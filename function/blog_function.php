@@ -112,16 +112,23 @@ function addBlogPostDetail($blog_post_id, $section_title, $section_content) {
 }
 
 // Fungsi mengedit detail blog post
-function editBlogPostDetail($id, $section_title, $section_content) {
+// Fungsi mengedit detail blog post
+function editBlogPostDetail($id, $title, $content, $image_url) {
     global $pdo;
-    $id = intval($id);
-    $section_title = clean_input($section_title);
-    $section_content = clean_input($section_content);
-    
-    $sql = "UPDATE blog_post_details SET section_title = ?, section_content = ? WHERE id = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$section_title, $section_content, $id]);
+
+    // Prepare the SQL statement
+    $stmt = $pdo->prepare("UPDATE blog_post_details SET title = ?, content = ?, image_url = ? WHERE id = ?");
+
+    // Bind the parameters
+    $stmt->bindParam(1, $title, PDO::PARAM_STR);
+    $stmt->bindParam(2, $content, PDO::PARAM_STR);
+    $stmt->bindParam(3, $image_url, PDO::PARAM_STR);
+    $stmt->bindParam(4, $id, PDO::PARAM_INT);
+
+    // Execute the statement and return the result
+    return $stmt->execute();
 }
+
 
 // Fungsi mengambil detail blog post berdasarkan blog_post_id
 function getBlogPostDetails($blog_post_id) {

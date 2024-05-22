@@ -253,7 +253,7 @@ $posts = getPosts();
                             </div>
                             <div class="mb-3">
                                 <label for="edit-image" class="form-label">Image</label>
-                                <input type="file" class="form-control" id="edit-image" name="image" required>
+                                <input type="file" class="form-control" id="edit-image" name="image" rbloequired>
                             </div>
                             <div class="mb-3">
                                 <label for="edit-description" class="form-label">Description</label>

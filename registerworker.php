@@ -109,7 +109,6 @@ require './function/getData.php';
         </div>
     </div>
 
-    <!-- Worker Registration Form -->
     <div class="container-xxl py-5" id="workerRegistrationForm">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -223,9 +222,7 @@ require './function/getData.php';
                         </div>
                     </div>
                 </div>
-
-                <!-- Educational Background -->
-                <div class="col-lg-12">
+<div class="col-lg-12">
                     <div class="row g-4">
                         <div class="col-lg-12 mt-5">
                             <h3>Educational Background</h3>
@@ -296,7 +293,6 @@ require './function/getData.php';
                         </div>
                     </div>
                 </div>
-                <!-- Work Experience -->
                 <div class="col-lg-12">
                     <div class="row g-4">
                         <div class="col-lg-12 mt-5">
@@ -320,7 +316,6 @@ require './function/getData.php';
                         </div>
                     </div>
                 </div>
-
                 <div class="col-lg-12">
                     <div class="row g-4">
                         <div class="col-lg-12">
@@ -394,8 +389,6 @@ require './function/getData.php';
                         </div>
                     </div>
                 </div>
-
-                <!-- Submit Button -->
                 <div class="row g-4">
                     <div class="col-lg-12 text-center mt-5">
                         <button type="submit" class="btn btn-primary">Register</button>

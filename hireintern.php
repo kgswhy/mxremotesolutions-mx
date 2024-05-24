@@ -65,7 +65,7 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index.php" class="nav-item nav-link ">Home</a>
                 <a href="about.html" class="nav-item nav-link">About Us</a>
-                <a href="services.html" class="nav-item nav-link">Services</a>
+                <a href="services.php" class="nav-item nav-link">Services</a>
                 <a href="job.php" class="nav-item nav-link">Job Opportunities</a>
 				<a href="blog.php" class="nav-item nav-link">Blog</a>
 				<a href="contact.html" class="nav-item nav-link">Contact</a>

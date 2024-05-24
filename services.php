@@ -1,3 +1,6 @@
+<?php
+require './function/getData.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +57,7 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a href="index.php" class="nav-item nav-link ">Home</a>
             <a href="about.html" class="nav-item nav-link">About Us</a>
-            <a href="services.html" class="nav-item nav-link active">Services</a>
+            <a href="services.php" class="nav-item nav-link active">Services</a>
             <a href="job.php" class="nav-item nav-link ">Job Opportunities</a>
             <a href="blog.php" class="nav-item nav-link">Blog</a>
             <a href="contact.html" class="nav-item nav-link">Contact</a>
@@ -147,147 +150,39 @@
                 <h1 class="mb-5">Explore Our Top-tier Talents</h1>
             </div>
             <div class="row g-4">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-1.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <!--img src="img/talent.png" width="150px" /-->
+                <?php if (!empty($positions)): ?>
+                    <?php foreach ($positions as $position): ?>
+                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="team-item bg-light">
+                                <div class="overflow-hidden">
+                                    <img class="img-fluid" src="<?php echo $position['image_url'] ?>" alt="<?php echo $position['name']; ?>">
+                                </div>
+                                <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                                    <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                    </div>
+                                </div>
+                                <div class="text-center p-4">
+                                    <h5 class="mb-0"><?php echo $position['name']; ?></h5>
+                                    <small>10+ Talents</small>
+                                </div>
                             </div>
                         </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Graphic Designer</h5>
-                            <small>20+ Talents</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-2.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                               <!--img src="img/talent.png" width="150px" /-->
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="col-lg-6 col-md-8">
+                        <div class="card no-jobs-card text-center p-5">
+                            <div class="card-body">
+                                <h1>Job not available</h1>
+                                <p class="mt-4">There are currently no job vacancies available. Please check back later or contact us for more information.</p>
+                                <a href="./contact.html" class="btn btn-primary mt-3">Contact Us</a>
                             </div>
                         </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Social Media Specialist</h5>
-                            <small>10+ Talents</small>
-                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-3.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <!--img src="img/talent.png" width="150px" /-->
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Web Developer</h5>
-                            <small>10+ Talents</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-4.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <!--img src="img/talent.png" width="150px" /-->
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Video Editor</h5>
-                            <small>10+ Talents</small>
-                        </div>
-                    </div>
-                </div>
+                <?php endif; ?>
             </div>
-			<br>
-			<div class="row g-4">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-5.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <!--img src="img/talent.png" width="150px" /-->
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Digital Business Analyst</h5>
-                            <small>10+ Talents</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-6.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                               <!--img src="img/talent.png" width="150px" /-->
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Pitchdeck Writer</h5>
-                            <small>10+ Talents</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-7.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <!--img src="img/talent.png" width="150px" /-->
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">E-Commerce Admin</h5>
-                            <small>10+ Talents</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-8.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <!--img src="img/talent.png" width="150px" /-->
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Accounting Admin</h5>
-                            <small>10+ Talents</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-			<div class="row g-4 justify-content-center">
-			<div class="row g-4 justify-content-center">
-				<div class="text-center wow fadeInUp" data-wow-delay="0.1s"><br>
-					<h1 class="mb-5"><a class="btn btn-primary py-3 px-5 mt-2" href="registercompany.php">Get Intern Now</a></h1>
-				</div>
-			</div>
         </div>
     </div>
-	</div>
+    
     <!-- Team End -->
 
 

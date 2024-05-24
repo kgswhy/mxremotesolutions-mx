@@ -57,7 +57,7 @@ require './function/getData.php';
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index.php" class="nav-item nav-link active">Home</a>
                 <a href="about.html" class="nav-item nav-link">About Us</a>
-                <a href="services.html" class="nav-item nav-link">Services</a>
+                <a href="services.php" class="nav-item nav-link">Services</a>
                 <a href="job.php" class="nav-item nav-link">Job Opportunities</a>
 				<a href="blog.php" class="nav-item nav-link">Blog</a>
 				<a href="contact.html" class="nav-item nav-link">Contact</a>
@@ -105,7 +105,7 @@ require './function/getData.php';
                                 <h5 class="text-primary text-uppercase mb-3 animated slideInDown">For Company</h5>
                                 <h1 class="display-3 text-white animated slideInDown">Get Your Top-tier Remote Talents</h1>
                                 <p class="fs-5 text-white mb-4 pb-2">Access to a wider pool of skilled and cost-effective talent and scalable workforce solutions. Hassle-free remote hiring, compliance processes and payroll management!</p>
-                                <a href="services.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Find Talents</a>
+                                <a href="services.php" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Find Talents</a>
                                 <a href="registercompany.php" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Register Now</a>
                             </div>
                         </div>

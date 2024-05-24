@@ -320,7 +320,7 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
 
     <!-- About Start -->
     <!-- Container for the whole section -->
-<div class="container-xxl py-5">
+<div class="container-xxl py-5" id="internCard">
     <!-- Primary content area with grid structure -->
     <div class="container">
         <div class="row g-5">

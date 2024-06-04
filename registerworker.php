@@ -150,18 +150,21 @@ require './function/getData.php';
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="desired_position_id">Desired Position:</label>
-                                <select id="desired_position_id" name="desired_position_id" class="form-control" required>
-                                    <option value="<?php $positions[0]; ?>" selected>Select Desired Position</option>
-                                    <?php
-                                    foreach ($positions as $position) {
-                                        echo "<option value=\"{$position['id']}\">{$position['name']}</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
+    <div class="form-group">
+        <label for="desired_position_id">Desired Position:</label>
+        <select id="desired_position_id" name="desired_position_id" class="form-control" required>
+            <option value="" selected>Select Desired Position</option>
+            <?php
+            foreach ($positions as $position) {
+                if ($position['status']) {
+                    echo "<option value=\"{$position['id']}\">{$position['name']}</option>";
+                }
+            }
+            ?>
+        </select>
+    </div>
+</div>
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="phone">Phone Number: <span style="color: red;">*</span></label>

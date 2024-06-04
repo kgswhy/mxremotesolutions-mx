@@ -24,7 +24,7 @@ $education_level_query->execute();
 $education_levels = $education_level_query->fetchAll(PDO::FETCH_ASSOC);
 
 // Mendapatkan data desired position
-$position_query = $pdo->prepare("SELECT id, name, image_url FROM position_table");
+$position_query = $pdo->prepare("SELECT id, status, name, image_talents, image_jobs, description, responsibilities FROM position_table");
 $position_query->execute();
 $positions = $position_query->fetchAll(PDO::FETCH_ASSOC);
 

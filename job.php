@@ -96,38 +96,72 @@ require './function/getData.php';
     </div>
     <!-- Header End -->
 
-
+    <!--  test -->
     <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Looking for Jobs?</h6>
-                <h1 class="mb-5">Explore Opportunities</h1>
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Looking for Jobs?</h6>
+            <h1 class="mb-5">Explore Opportunities</h1>
+        </div>
+        <?php if (empty($positions)): ?>
+        <div class="col-lg-6 col-md-8">
+            <div class="card no-jobs-card text-center p-5">
+                <div class="card-body">
+                    <h1>Job not available</h1>
+                    <p class="mt-4">There are currently no job vacancies available. Please check back later or contact us for more information.</p>
+                    <a href="./contact.html" class="btn btn-primary mt-3">Contact Us</a>
+                </div>
             </div>
-            <div class="row g-4 justify-content-center">
-                <?php foreach ($positions as $position): ?>
+        </div>
+        <?php else: ?>
+        <?php foreach ($positions as $position): ?>
+        <?php if ($position['status']): ?>
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="course-item bg-light">
+                            <div class="position-relative overflow-hidden">
+                                <img class="img-fluid" src="<?php echo $position['image_jobs']; ?>" alt="">
+                                <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                    <a href="registerworker.php" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 30px 30px 30px 30px;">Apply Now</a>
+                                </div>
+                            </div>
                             <div class="text-center p-4 pb-0">
                                 <h3 class="mb-4"><?php echo $position['name']; ?></h3>
-                                <h5 class="mb-0"><i class="fa fa-money-bill me-3"></i>Start from SGD 150</h5>
-                                <div class="mb-3"></div>
                             </div>
                             <div class="d-flex border-top">
                                 <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>Internship</small>
                                 <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>40 Hrs/Wk</small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>1 Positions</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>1 Position</small>
                             </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="row g-4 justify-content-center">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s"><br>
-                    <h1 class="mb-5"><a class="btn btn-primary py-3 px-5 mt-2" href="job.php">Explore More</a></h1>
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <h1 class="mb-4"><?php echo htmlspecialchars($position['name']); ?></h1>
+                        <p class="mb-4"><?php echo $position['description']; ?></p>
+                        <div class="row gy-2 gx-4 mb-4">
+                            <?php
+                            $responsibilities = json_decode($position['responsibilities'], true);
+                            if (json_last_error() === JSON_ERROR_NONE) {
+                                foreach ($responsibilities as $responsibility) {
+                                    echo "<div><p class='mb-0'><i class='fa fa-arrow-right text-primary me-2'></i>" . htmlspecialchars($responsibility) . "</p></div>";
+                                }
+                            } else {
+                                echo "<div><p>Error decoding responsibilities</p></div>";
+                            }
+                            ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <?php endif; ?>
+        <?php endforeach; ?>
+        <?php endif; ?>
     </div>
+</div>
+
 
     <!-- Courses Start -->
     <!-- <div class="container-xxl py-5">

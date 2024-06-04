@@ -34,11 +34,18 @@ try {
     ]);
 
     // Jika berhasil, arahkan ke halaman dengan pesan sukses
-    header("Location: ../ads.php?success=true");
+    header("Location: ../hireintern.php?success=true");
     exit();
 } catch (PDOException $e) {
-    // Penanganan kesalahan database
-    echo "Database Error: " . $e->getMessage();
+    // Tangani duplikasi email khusus
+    if ($e->getCode() == 23000 && strpos($e->getMessage(), 'Duplicate entry') !== false) {
+        // Abaikan duplikasi entri email dan lanjutkan
+        header("Location: ../hireintern.php?success=true");
+        exit();
+    } else {
+        // Penanganan kesalahan database lainnya
+        echo "Database Error: " . $e->getMessage();
+    }
 } catch (Exception $e) {
     // Penanganan kesalahan lainnya
     echo "Error: " . $e->getMessage();

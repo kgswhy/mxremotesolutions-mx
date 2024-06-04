@@ -151,38 +151,40 @@ require './function/getData.php';
             </div>
             <div class="row g-4">
                 <?php if (!empty($positions)): ?>
-                    <?php foreach ($positions as $position): ?>
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="team-item bg-light">
-                                <div class="overflow-hidden">
-                                    <img class="img-fluid" src="<?php echo $position['image_url'] ?>" alt="<?php echo $position['name']; ?>">
-                                </div>
-                                <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                                    <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                    </div>
-                                </div>
-                                <div class="text-center p-4">
-                                    <h5 class="mb-0"><?php echo $position['name']; ?></h5>
-                                    <small>10+ Talents</small>
-                                </div>
+                <?php foreach ($positions as $position): ?>
+                <?php if ($position['status']): ?>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item bg-light">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="<?php echo $position['image_talents']; ?>" alt="<?php echo $position['name']; ?>">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
                             </div>
                         </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <div class="col-lg-6 col-md-8">
-                        <div class="card no-jobs-card text-center p-5">
-                            <div class="card-body">
-                                <h1>Job not available</h1>
-                                <p class="mt-4">There are currently no job vacancies available. Please check back later or contact us for more information.</p>
-                                <a href="./contact.html" class="btn btn-primary mt-3">Contact Us</a>
-                            </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0"><?php echo $position['name']; ?></h5>
+                            <small>10+ Talents</small>
                         </div>
                     </div>
+                </div>
+                <?php endif; ?>
+                <?php endforeach; ?>
+                <?php else: ?>
+                <div class="col-lg-6 col-md-8">
+                    <div class="card no-jobs-card text-center p-5">
+                        <div class="card-body">
+                            <h1>Job not available</h1>
+                            <p class="mt-4">There are currently no job vacancies available. Please check back later
+                                or contact us for more information.</p>
+                            <a href="./contact.html" class="btn btn-primary mt-3">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
                 <?php endif; ?>
             </div>
         </div>
     </div>
-    
     <!-- Team End -->
 
 

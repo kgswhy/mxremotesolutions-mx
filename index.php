@@ -18,7 +18,9 @@ require './function/getData.php';
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -37,7 +39,8 @@ require './function/getData.php';
 
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
@@ -59,18 +62,19 @@ require './function/getData.php';
                 <a href="about.html" class="nav-item nav-link">About Us</a>
                 <a href="services.php" class="nav-item nav-link">Services</a>
                 <a href="job.php" class="nav-item nav-link">Job Opportunities</a>
-				<a href="blog.php" class="nav-item nav-link">Blog</a>
-				<a href="contact.html" class="nav-item nav-link">Contact</a>
-				<div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle btn btn-primary py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">Register</a>
+                <a href="blog.php" class="nav-item nav-link">Blog</a>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle btn btn-primary py-4 px-lg-5 d-none d-lg-block"
+                        data-bs-toggle="dropdown">Register</a>
                     <div class="dropdown-menu fade-down m-0">
                         <a href="registercompany.php" class="dropdown-item">as Company</a>
                         <a href="registerworker.php" class="dropdown-item">as Worker</a>
                     </div>
                 </div>
-				<a href="contact.html" class="nav-item nav-link"></a>
+                <a href="contact.html" class="nav-item nav-link"></a>
             </div>
-			<!--a href="" style="color:#000 !important;background-color:#fff !important;border:0px !important;" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Register as Talent<i class="fa fa-arrow-right ms-3"></i></a>
+            <!--a href="" style="color:#000 !important;background-color:#fff !important;border:0px !important;" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Register as Talent<i class="fa fa-arrow-right ms-3"></i></a>
             <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Register as Company<i class="fa fa-arrow-right ms-3"></i></a-->
         </div>
     </nav>
@@ -82,15 +86,21 @@ require './function/getData.php';
         <div class="owl-carousel header-carousel position-relative">
             <div class="owl-carousel-item position-relative">
                 <img class="img-fluid" src="img/carousel-2.png" alt="">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+                    style="background: rgba(24, 29, 56, .7);">
                     <div class="container">
                         <div class="row justify-content-start">
                             <div class="col-sm-10 col-lg-8">
-                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">For Intern and Professional</h5>
+                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">For Intern and
+                                    Professional</h5>
                                 <h1 class="display-3 text-white animated slideInDown">Get Your Dream Remote Jobs</h1>
-                                <p class="fs-5 text-white mb-4 pb-2">Opportunities to work with reputable world companies and get access to remote work opportunities that bridge borders. Grow your career path and exposure to international work environments!</p>
-                                <a href="job.php" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Find Opportunities</a>
-                                <a href="registerworker.php" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Register Now</a>
+                                <p class="fs-5 text-white mb-4 pb-2">Opportunities to work with reputable world
+                                    companies and get access to remote work opportunities that bridge borders. Grow your
+                                    career path and exposure to international work environments!</p>
+                                <a href="job.php" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Find
+                                    Opportunities</a>
+                                <a href="registerworker.php"
+                                    class="btn btn-light py-md-3 px-md-5 animated slideInRight">Register Now</a>
                             </div>
                         </div>
                     </div>
@@ -98,15 +108,21 @@ require './function/getData.php';
             </div>
             <div class="owl-carousel-item position-relative">
                 <img class="img-fluid" src="img/carousel-1.png" alt="">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+                    style="background: rgba(24, 29, 56, .7);">
                     <div class="container">
                         <div class="row justify-content-start">
                             <div class="col-sm-10 col-lg-8">
                                 <h5 class="text-primary text-uppercase mb-3 animated slideInDown">For Company</h5>
-                                <h1 class="display-3 text-white animated slideInDown">Get Your Top-tier Remote Talents</h1>
-                                <p class="fs-5 text-white mb-4 pb-2">Access to a wider pool of skilled and cost-effective talent and scalable workforce solutions. Hassle-free remote hiring, compliance processes and payroll management!</p>
-                                <a href="services.php" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Find Talents</a>
-                                <a href="registercompany.php" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Register Now</a>
+                                <h1 class="display-3 text-white animated slideInDown">Get Your Top-tier Remote Talents
+                                </h1>
+                                <p class="fs-5 text-white mb-4 pb-2">Access to a wider pool of skilled and
+                                    cost-effective talent and scalable workforce solutions. Hassle-free remote hiring,
+                                    compliance processes and payroll management!</p>
+                                <a href="services.php"
+                                    class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Find Talents</a>
+                                <a href="registercompany.php"
+                                    class="btn btn-light py-md-3 px-md-5 animated slideInRight">Register Now</a>
                             </div>
                         </div>
                     </div>
@@ -126,7 +142,8 @@ require './function/getData.php';
                         <div class="p-4">
                             <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
                             <h5 class="mb-3">Talent Sourcing and Screening</h5>
-                            <p>Ensuring they possess the required skills and fluency in English for success in a work environment.</p>
+                            <p>Ensuring they possess the required skills and fluency in English for success in a work
+                                environment.</p>
                         </div>
                     </div>
                 </div>
@@ -135,7 +152,8 @@ require './function/getData.php';
                         <div class="p-4">
                             <i class="fa fa-3x fa-globe text-primary mb-4"></i>
                             <h5 class="mb-3">Remote Onboarding and Support</h5>
-                            <p>Facilitating seamless remote onboarding, including cultural orientation and technology setup.</p>
+                            <p>Facilitating seamless remote onboarding, including cultural orientation and technology
+                                setup.</p>
                         </div>
                     </div>
                 </div>
@@ -144,7 +162,8 @@ require './function/getData.php';
                         <div class="p-4">
                             <i class="fa fa-3x fa-home text-primary mb-4"></i>
                             <h5 class="mb-3">Payroll and Compliance Management</h5>
-                            <p>Handling payroll processing, ensuring compliance with both countries employment regulations.</p>
+                            <p>Handling payroll processing, ensuring compliance with both countries employment
+                                regulations.</p>
                         </div>
                     </div>
                 </div>
@@ -169,32 +188,42 @@ require './function/getData.php';
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="img-fluid position-absolute w-100 h-100" src="img/about.jpg" alt="" style="object-fit: cover;">
+                        <img class="img-fluid position-absolute w-100 h-100" src="img/about.jpg" alt=""
+                            style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                     <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
                     <h1 class="mb-4">Work From Anywhere with <br>MX Remote Solutions</h1>
-                    <p class="mb-4">We bridge talent across borders by providing exceptional remote work opportunities. We understand the unique cultural and professional synergies between Indonesia and other countries and leverage this knowledge to foster smooth, productive working relationships.</p>
-                    <p class="mb-4">The increasing trend of globalization and continuous digital innovation has accelerated the adoption of remote work. The COVID-19 pandemic further catalyzed this shift, demonstrating the viability of remote teams and highlighting the need for flexibility.</p>
+                    <p class="mb-4">We bridge talent across borders by providing exceptional remote work
+                        opportunities. We understand the unique cultural and professional synergies between Indonesia
+                        and other countries and leverage this knowledge to foster smooth, productive working
+                        relationships.</p>
+                    <p class="mb-4">The increasing trend of globalization and continuous digital innovation has
+                        accelerated the adoption of remote work. The COVID-19 pandemic further catalyzed this shift,
+                        demonstrating the viability of remote teams and highlighting the need for flexibility.</p>
                     <div class="row gy-2 gx-4 mb-4">
                         <div class="col-sm-6">
                             <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>IT and Technology</p>
                         </div>
                         <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Customer Service and Support</p>
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Customer Service and
+                                Support</p>
                         </div>
                         <div class="col-sm-6">
                             <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Digital Marketing</p>
                         </div>
                         <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Content Creation and Translation</p>
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Content Creation and
+                                Translation</p>
                         </div>
                         <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Finance and Accounting</p>
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Finance and
+                                Accounting</p>
                         </div>
-						<div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Administration and Data Entries</p>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Administration and
+                                Data Entries</p>
                         </div>
                     </div>
                     <a class="btn btn-primary py-3 px-5 mt-2" href="about.html">Read More</a>
@@ -258,44 +287,6 @@ require './function/getData.php';
     </div-->
     <!-- Categories Start -->
 
-    <div class="container-xxl py-5">
-    <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="section-title bg-white text-center text-primary px-3">Looking for Jobs?</h6>
-            <h1 class="mb-5">Explore Opportunities</h1>
-        </div>
-        <div class="row justify-content-center">
-            <?php if (empty($positions)): ?>
-                <div class="col-lg-6 col-md-8">
-                    <div class="card no-jobs-card text-center p-5">
-                        <div class="card-body">
-                            <h1>Job not available</h1>
-                            <p class="mt-4">There are currently no job vacancies available. Please check back later or contact us for more information.</p>
-                            <a href="./contact.html" class="btn btn-primary mt-3">Contact Us</a>
-                        </div>
-                    </div>
-                </div>
-            <?php else: ?>
-                <?php foreach ($positions as $position): ?>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp mt-3" data-wow-delay="0.1s">
-                        <div class="course-item bg-light">
-                            <div class="text-center p-4 pb-0">
-                                <h3 class="mb-4"><?php echo $position['name']; ?></h3>
-                                <h5 class="mb-0"><i class="fa fa-money-bill me-3"></i>Start from SGD 150</h5>
-                                <div class="mb-3"></div>
-                            </div>
-                            <div class="d-flex border-top">
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>Internship</small>
-                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>40 Hrs/Wk</small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>1 Positions</small>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
-    </div>
-</div>
     <!-- Courses Start -->
     <!-- <div class="container-xxl py-5">
         <div class="container">
@@ -314,7 +305,7 @@ require './function/getData.php';
                             </div>
                         </div>
                         <div class="text-center p-4 pb-0">
-							<h3 class="mb-4">Social Media Specialist</h3>
+       <h3 class="mb-4">Social Media Specialist</h3>
                             <h5 class="mb-0"><i class="fa fa-money-bill me-3"></i>Start from SGD 150</h5>
                             <div class="mb-3"></div>
                         </div>
@@ -368,61 +359,117 @@ require './function/getData.php';
                     </div>
                 </div>
             </div>
-			<div class="row g-4 justify-content-center">
-				<div class="text-center wow fadeInUp" data-wow-delay="0.1s"><br>
-					<h1 class="mb-5"><a class="btn btn-primary py-3 px-5 mt-2" href="job.php">Explore More</a></h1>
-				</div>
-			</div>
+   <div class="row g-4 justify-content-center">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s"><br>
+     <h1 class="mb-5"><a class="btn btn-primary py-3 px-5 mt-2" href="job.php">Explore More</a></h1>
+    </div>
+   </div>
         </div>
     </div> -->
     <!-- Courses End -->
 
-
-    <!-- Team Start -->
     <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="section-title bg-white text-center text-primary px-3">Looking for Talents?</h6>
-            <h1 class="mb-5">Explore Our Top-tier Talents</h1>
+            <h6 class="section-title bg-white text-center text-primary px-3">Looking for Jobs?</h6>
+            <h1 class="mb-5">Explore Opportunities</h1>
         </div>
-        <div class="row g-4">
-            <?php if (!empty($positions)): ?>
-                <?php foreach ($positions as $position): ?>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item bg-light">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="<?php echo $position['image_url'] ?>" alt="<?php echo $position['name']; ?>">
-                            </div>
-                            <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                                <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                </div>
-                            </div>
-                            <div class="text-center p-4">
-                                <h5 class="mb-0"><?php echo $position['name']; ?></h5>
-                                <small>10+ Talents</small>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <div class="col-lg-6 col-md-8">
-                    <div class="card no-jobs-card text-center p-5">
-                        <div class="card-body">
-                            <h1>Job not available</h1>
-                            <p class="mt-4">There are currently no job vacancies available. Please check back later or contact us for more information.</p>
-                            <a href="./contact.html" class="btn btn-primary mt-3">Contact Us</a>
-                        </div>
+        <div class="row g-4 justify-content-center">
+            <?php if (empty($positions)): ?>
+            <div class="col-lg-6 col-md-8">
+                <div class="card no-jobs-card text-center p-5">
+                    <div class="card-body">
+                        <h1>Job not available</h1>
+                        <p class="mt-4">There are currently no job vacancies available. Please check back later or contact us for more information.</p>
+                        <a href="./contact.html" class="btn btn-primary mt-3">Contact Us</a>
                     </div>
                 </div>
+            </div>
+            <?php else: ?>
+            <?php foreach ($positions as $position): ?>
+            <?php if ($position['status']): ?>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="course-item bg-light">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid" src="<?php echo $position['image_jobs']; ?>" alt="">
+                        <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                            <a href="job.php" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Explore More</a>
+                            <a href="registerworker.php" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Apply Now</a>
+                        </div>
+                    </div>
+                    <div class="text-center p-4 pb-0">
+                        <h3 class="mb-4"><?php echo $position['name']; ?></h3>
+                        <div class="mb-3"></div>
+                    </div>
+                    <div class="d-flex border-top">
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>Internship</small>
+                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>40 Hrs/Wk</small>
+                        <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>1 Position</small>
+                    </div>
+                </div>
+            </div>
             <?php endif; ?>
+            <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s"><br>
+                <h1 class="mb-5"><a class="btn btn-primary py-3 px-5 mt-2" href="job.php">Explore More</a></h1>
+            </div>
         </div>
     </div>
 </div>
 
+
+    <!-- Team Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Looking for Talents?</h6>
+                <h1 class="mb-5">Explore Our Top-tier Talents</h1>
+            </div>
+            <div class="row g-4">
+                <?php if (!empty($positions)): ?>
+                <?php foreach ($positions as $position): ?>
+                <?php if ($position['status']): ?>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item bg-light">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="<?php echo $position['image_talents']; ?>" alt="<?php echo $position['name']; ?>">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                            </div>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0"><?php echo $position['name']; ?></h5>
+                            <small>10+ Talents</small>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+                <?php endforeach; ?>
+                <?php else: ?>
+                <div class="col-lg-6 col-md-8">
+                    <div class="card no-jobs-card text-center p-5">
+                        <div class="card-body">
+                            <h1>Job not available</h1>
+                            <p class="mt-4">There are currently no job vacancies available. Please check back later
+                                or contact us for more information.</p>
+                            <a href="./contact.html" class="btn btn-primary mt-3">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Team End -->
 
 
-   
+
     <!-- Testimonial Start -->
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
@@ -444,28 +491,32 @@ require './function/getData.php';
     </div>
     <!-- Testimonial End -->
 
-        
+
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
-				<div class="col-lg-6 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <h4 class="text-white mb-3">About Us</h4>
                     <div class="row g-2 pt-2">
                         <p>We connects highly skilled professionals with businesses seeking remote talent solutions.</p>
-						<p>We bridge talent across borders by providing exceptional remote work opportunities. We understand the unique cultural and professional synergies between Indonesia and other countries and leverage this knowledge to foster smooth, productive working relationships.</p>
+                        <p>We bridge talent across borders by providing exceptional remote work opportunities. We
+                            understand the unique cultural and professional synergies between Indonesia and other
+                            countries and leverage this knowledge to foster smooth, productive working relationships.
+                        </p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <h4 class="text-white mb-3">Contact</h4>
                     <p><b>MX Global Pte Ltd</b><br>
-					Midview City, 22 Sin Ming Lane, #06-76, Postal 573969
-					</p>
-					<p><b>PT Max Pandai Education</b>
-					<br>Jakarta, Indonesia<br>
-					+62 815 9221 333<br>
-					hello@mxsolution.id</p>
+                        Midview City, 22 Sin Ming Lane, #06-76, Postal 573969
+                    </p>
+                    <p><b>PT Max Pandai Education</b>
+                        <br>Jakarta, Indonesia<br>
+                        +62 815 9221 333<br>
+                        hello@mxsolution.id
+                    </p>
                 </div>
             </div>
         </div>
@@ -476,7 +527,7 @@ require './function/getData.php';
                         © 2024 MX Global Pte Ltd | PT Max Pandai Education
                     </div>
                     <div class="col-md-6 text-center text-md-end">
-                        
+
                     </div>
                 </div>
             </div>

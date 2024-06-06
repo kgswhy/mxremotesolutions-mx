@@ -47,8 +47,8 @@ require './function/getData.php';
     <!-- Spinner Start -->
 
 
-   <!-- Navbar Start -->
- <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 class="m-0 text-primary"><img src="img/logo.png" width="200px" /></h2>
         </a>
@@ -64,7 +64,8 @@ require './function/getData.php';
                 <a href="blog.php" class="nav-item nav-link ">Blog</a>
                 <a href="contact.html" class="nav-item nav-link ">Contact</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle btn btn-primary py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">Register</a>
+                    <a href="#" class="nav-link dropdown-toggle btn btn-primary py-4 px-lg-5 d-none d-lg-block"
+                        data-bs-toggle="dropdown">Register</a>
                     <div class="dropdown-menu fade-down m-0">
                         <a href="registercompany.php" class="dropdown-item ">as Company</a>
                         <a href="registerworker.php" class="dropdown-item active">as Worker</a>
@@ -150,21 +151,27 @@ require './function/getData.php';
                             </div>
                         </div>
                         <div class="col-md-6">
-    <div class="form-group">
-        <label for="desired_position_id">Desired Position:</label>
-        <select id="desired_position_id" name="desired_position_id" class="form-control" required>
-            <option value="" selected>Select Desired Position</option>
-            <?php
-            foreach ($positions as $position) {
-                if ($position['status']) {
-                    echo "<option value=\"{$position['id']}\">{$position['name']}</option>";
-                }
-            }
-            ?>
-        </select>
-    </div>
-</div>
+                            <div class="form-group">
+                                <label for="desired_position_id">Desired Position: <span style="color: red;">*</span></label>
+                                <select id="desired_position_id" name="desired_position_id" class="form-control"
+                                    required>
+                                    <option value="" selected>Select Desired Position</option>
+                                    <?php
+                                    foreach ($positions as $position) {
+                                        if ($position['status']) {
+                                            echo "<option value=\"{$position['id']}\">{$position['name']}</option>";
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
 
+                        </div>
+                        <div class="form-group" id="other_position_group" style="display: none;">
+                            <label for="other_position">Specify Other Position: <span style="color: red;">*</span></label>
+                            <input type="text" id="other_position" name="other_position" class="form-control"
+                                placeholder="Please specify other position" required>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="phone">Phone Number: <span style="color: red;">*</span></label>
@@ -211,7 +218,8 @@ require './function/getData.php';
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="marital_status_id">Marital Status: <span style="color: red;">*</span></label>
+                                <label for="marital_status_id">Marital Status: <span
+                                        style="color: red;">*</span></label>
                                 <select id="marital_status_id" name="marital_status_id" class="form-control"
                                     required>
                                     <option value="" selected>Select Marital Status Level</option>
@@ -225,7 +233,7 @@ require './function/getData.php';
                         </div>
                     </div>
                 </div>
-<div class="col-lg-12">
+                <div class="col-lg-12">
                     <div class="row g-4">
                         <div class="col-lg-12 mt-5">
                             <h3>Educational Background</h3>
@@ -372,7 +380,7 @@ require './function/getData.php';
                                 <input type="file" id="introduction" name="introduction" class="form-control"
                                     accept="video/*">
                                 <small class="form-text text-muted">
-                                Must be in English. Max duration 3 minutes. Maximal size is 15 MB.                                </small>
+                                    Must be in English. Max duration 3 minutes. Maximal size is 15 MB. </small>
                             </div>
                             <div class="form-group">
                                 <label for="cv">Upload CV (PDF only):</label>
@@ -446,12 +454,21 @@ require './function/getData.php';
         </div>
     </div>
     <!-- Footer End -->
- 
+
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-
+    <script>
+        document.getElementById('desired_position_id').addEventListener('change', function() {
+            var otherPositionGroup = document.getElementById('other_position_group');
+            if (this.value === '17') {
+                otherPositionGroup.style.display = 'block';
+            } else {
+                otherPositionGroup.style.display = 'none';
+            }
+        });
+    </script>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

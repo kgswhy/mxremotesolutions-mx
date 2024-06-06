@@ -5,7 +5,7 @@ require  'utilities.php';     // Fungsi utilitas untuk membersihkan data
 function get_contacts() {
     global $pdo;
 
-    $stmt = $pdo->prepare('SELECT id, name, email, subject, message FROM contact');
+    $stmt = $pdo->prepare('SELECT id, name, email, subject, phone, message FROM contact');
     $stmt->execute();
     
     return $stmt->fetchAll(PDO::FETCH_ASSOC);

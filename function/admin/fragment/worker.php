@@ -170,6 +170,7 @@ if (!is_admin_logged_in()) {
                     <th>Phone</th>
                     <th>Email</th>
                     <th>Position</th>
+                    <th>Position Remark</th>
                     <th>Status Worker</th>
                     <th>Detail</th>
                 </tr>
@@ -190,6 +191,7 @@ if (!is_admin_logged_in()) {
                     echo "<td>{$worker['phone']}</td>";
                     echo "<td>{$worker['email']}</td>";
                     echo "<td>{$worker['position_table_name']}</td>";
+                    echo "<td>{$worker['position_remark']}</td>";
                     echo "<td>{$worker['status_worker_name']}</td>";
                     echo "<td><a href='./worker_detail.php?id={$worker['id']}' class='btn btn-primary'>Lihat Detail</a></td>";
                     echo '</tr>';
@@ -227,7 +229,7 @@ if (!is_admin_logged_in()) {
             "ordering": true,
             "info": true,
             "autoWidth": true,
-            "pageLength": 5,
+            "pageLength": 20,
         });
 
         // Filter by position

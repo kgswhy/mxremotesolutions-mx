@@ -151,6 +151,7 @@ if (!is_admin_logged_in()) {
                         <th>Name</th>
                         <th>Email</th>
                         <th>Subject</th>
+                        <th>Phone Number</th>
                         <th>Message</th>
                         <th>Contact</th>
                     </tr>
@@ -168,6 +169,7 @@ if (!is_admin_logged_in()) {
                         echo "<td>{$contact['name']}</td>";
                         echo "<td>{$contact['email']}</td>";
                         echo "<td>{$contact['subject']}</td>";
+                        echo "<td>{$contact['phone']}</td>";
                         echo "<td>{$contact['message']}</td>";
                         echo "<td><a href='mailto:{$contact['email']}' class='btn btn-primary'>Contact Email</a></td>";
                         echo '</tr>';

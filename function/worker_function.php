@@ -33,6 +33,7 @@ function register_worker($data, $files)
         $last_position = isset($data['last_position']) ? validate_input($data['last_position']) : null;
         $last_company = isset($data['last_company']) ? validate_input($data['last_company']) : null;
         $desired_position_id = isset($data['desired_position_id']) ? (int) $data['desired_position_id'] : null;
+        $other_position = isset($data['other_position']) ? validate_input($data['other_position']) : null;
         $last_job_desc = isset($data['last_job_desc']) ? validate_input($data['last_job_desc']) : null;
 
         // Validasi dan sanitasi input untuk documents and portfolio
@@ -47,63 +48,62 @@ function register_worker($data, $files)
         {
             // Default value for $file_path
             $file_path = '';
-            
+
             // Check if file is provided
             if (!isset($file) || $file['error'] != 0) {
                 return $file_path;
             }
-        
+
             // Check if file size exceeds the limit
-            if ($file['size'] > ($max_file_size_mb * 1024 * 1024)) {
+            if ($file['size'] > $max_file_size_mb * 1024 * 1024) {
                 return "File size exceeds the limit of {$max_file_size_mb} MB.";
             }
-        
+
             $target_file = $directory . basename($file['name']);
             $final_path = '../../' . $target_file; // Final path to be inserted into the database
             if (move_uploaded_file($file['tmp_name'], $final_path)) {
                 $file_path = $target_file; // Update the $file_path value if successfully uploaded
             }
-        
+
             return $file_path;
         }
-        
+
         // Maximum file size for introduction file (in MB)
         $max_intro_size_mb = 15;
-        
+
         // Upload introduction file and get its path
         $introduction_path = upload_file($files['introduction'] ?? null, './introduction/', $max_intro_size_mb);
-        
+
         // Upload CV file and get its path
         $cv_path = upload_file($files['cv'] ?? null, './cvWorker/', 10);
-        
+
         // Upload portfolio file and get its path
         $portofolio_path = upload_file($files['portfolio'] ?? null, './portfolio/', 10);
-        
+
         // Handle cases where the upload might have failed or was not provided
-        if (is_string($introduction_path) && strpos($introduction_path, "File size exceeds") === 0) {
+        if (is_string($introduction_path) && strpos($introduction_path, 'File size exceeds') === 0) {
             // Handle file size error for introduction
             // You might want to return or handle this error
-            echo json_encode(["success" => false, "error" => $introduction_path]);
-            exit;
+            echo json_encode(['success' => false, 'error' => $introduction_path]);
+            exit();
         }
-        
-        if (is_string($cv_path) && strpos($cv_path, "File size exceeds") === 0) {
+
+        if (is_string($cv_path) && strpos($cv_path, 'File size exceeds') === 0) {
             // Handle file size error for CV
             // You might want to return or handle this error
-            echo json_encode(["success" => false, "error" => $cv_path]);
-            exit;
+            echo json_encode(['success' => false, 'error' => $cv_path]);
+            exit();
         }
-        
-        if (is_string($portofolio_path) && strpos($portofolio_path, "File size exceeds") === 0) {
+
+        if (is_string($portofolio_path) && strpos($portofolio_path, 'File size exceeds') === 0) {
             // Handle file size error for portfolio
             // You might want to return or handle this error
-            echo json_encode(["success" => false, "error" => $portofolio_path]);
-            exit;
+            echo json_encode(['success' => false, 'error' => $portofolio_path]);
+            exit();
         }
-        
+
         // Use $introduction_path, $cv_path, and $portfolio_path as needed
         // If files were not uploaded, their paths will be empty strings
-        
 
         // Simpan data ke dalam tabel worker
         $sql = "INSERT INTO worker (
@@ -111,7 +111,7 @@ function register_worker($data, $files)
     current_education_level_id, current_major, current_school,
     last_education_level_id, last_major, last_school,
     english_proficiency, toefl_score, last_position, last_company,
-    last_job_desc, desired_position_id, skill_level, internet,
+    last_job_desc, desired_position_id, position_remark, skill_level, internet,
     willing, recruitment, introduction, cv, portofolio, referral,
     status_worker_id
 ) VALUES (
@@ -119,7 +119,7 @@ function register_worker($data, $files)
     :current_education_level_id, :current_major, :current_school,
     :last_education_level_id, :last_major, :last_school,
     :english_proficiency, :toefl_score, :last_position, :last_company,
-    :last_job_desc, :desired_position_id, :skill_level, :internet,
+    :last_job_desc, :desired_position_id, :position_remark, :skill_level, :internet,
     :willing, :recruitment, :introduction, :cv, :portofolio, :referral,
     '1'  
 )";
@@ -148,6 +148,7 @@ function register_worker($data, $files)
             ':last_company' => $last_company,
             ':last_job_desc' => $last_job_desc,
             ':desired_position_id' => $desired_position_id,
+            ':position_remark' => $other_position,
             ':skill_level' => $skill_level,
             ':internet' => $internet,
             ':willing' => $willing,
@@ -320,7 +321,7 @@ function submit_interview_assessment($worker_id, $candidate_name, $applied_posit
                     :overall_recommendation,
                     :notes
                 )";
-        
+
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':worker_id', $worker_id);
         $stmt->bindParam(':candidate_name', $candidate_name);
@@ -358,7 +359,7 @@ function get_worker_interview($worker_id)
 
     try {
         // Query untuk mendapatkan data penilaian wawancara berdasarkan worker_id
-        $sql = "SELECT * FROM worker_interview WHERE worker_id = :worker_id";
+        $sql = 'SELECT * FROM worker_interview WHERE worker_id = :worker_id';
 
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':worker_id', $worker_id, PDO::PARAM_INT); // Mengikat parameter worker_id
@@ -373,18 +374,19 @@ function get_worker_interview($worker_id)
 }
 
 // Di dalam worker_function.php
-function get_worker_interview_by_id($interview_id) {
+function get_worker_interview_by_id($interview_id)
+{
     global $pdo; // Pastikan Anda telah membuat koneksi database $pdo di file db_connection.php
 
     // Validasi input interview_id (pastikan bertipe integer)
     if (!is_numeric($interview_id)) {
-        throw new InvalidArgumentException("Invalid interview ID.");
+        throw new InvalidArgumentException('Invalid interview ID.');
     }
 
     try {
         // Query untuk mengambil data penilaian wawancara berdasarkan interview_id
-        $sql = "SELECT * FROM worker_interview WHERE interview_id = :interview_id";
-        
+        $sql = 'SELECT * FROM worker_interview WHERE interview_id = :interview_id';
+
         // Persiapan prepared statement
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':interview_id', $interview_id, PDO::PARAM_INT); // Mengikat parameter dengan nilai yang sesuai
@@ -400,6 +402,5 @@ function get_worker_interview_by_id($interview_id) {
         return null; // Kembalikan null jika terjadi kesalahan
     }
 }
-
 
 ?>

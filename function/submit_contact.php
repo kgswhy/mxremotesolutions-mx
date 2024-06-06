@@ -1,33 +1,42 @@
 <?php
 require 'db_connection.php';  // Database connection
-require 'utilities.php';
+require './utilities.php';
 require 'email_function.php';
 require 'email_config.php';
 require 'contact_function.php';
 
 try {
-    // Sanitize and validate form data
-    $name = clean_input($_POST['name']);
-    $email = validate_email($_POST['email']) ? $_POST['email'] : null;
-    $subject = isset($_POST['subject']) ? clean_input($_POST['subject']) : null;
-    $message = clean_input($_POST['message']);
-
-    // Check if all required fields are filled
-    if (!$name || !$email || !$message) {
-        throw new Exception("All fields are required except subject.");
-    }
-
-    // SQL statement to insert data into contact table
-    $sql = "INSERT INTO contact (name, email, subject, message) 
-            VALUES (:name, :email, :subject, :message)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        ':name' => $name,
-        ':email' => $email,
-        ':subject' => $subject,
-        ':message' => $message
-    ]);
-    
+       // Sanitize and validate form data
+       $name = isset($_POST['name']) ? validate_input($_POST['name']) : '';
+       $email = isset($_POST['email']) ? validate_email($_POST['email']) : '';
+       $subject = isset($_POST['subject']) ? validate_input($_POST['subject']) : 'No Subject';
+       $message = isset($_POST['message']) ? validate_input($_POST['message']) : '';
+       $phone = isset($_POST['phone_number']) ? validate_input($_POST['phone_number']) : '';
+   
+       // Debugging: Check if data is being received correctly
+       error_log("Name: $name");
+       error_log("Email: $email");
+       error_log("Subject: $subject");
+       error_log("Message: $message");
+       error_log("Phone: $phone");
+   
+       // Check if all required fields are filled
+       if (!$name || !$email || !$message) {
+           throw new Exception("Name, email, and message are required fields.");
+       }
+   
+       // SQL statement to insert data into contact table
+       $sql = "INSERT INTO contact (name, email, subject, phone, message) 
+               VALUES (:name, :email, :subject, :phone, :message)";
+       $stmt = $pdo->prepare($sql);
+       $stmt->execute([
+           ':name' => $name,
+           ':email' => $email,
+           ':subject' => $subject,
+           ':phone' => $phone,
+           ':message' => $message
+       ]);
+   
     // Sending email to the company
     $to = COMPANY_EMAIL;
     $emailSubject = "New Contact Message: $subject";
@@ -36,6 +45,7 @@ try {
                   . "From: $name\n"
                   . "Email: $email\n"
                   . "Subject: $subject\n"
+                  . "Phine Number: $phone\n"
                   . "Message:\n$message\n\n"
                   . "Please respond to the sender as soon as possible.\n\n"
                   . "Best regards,\n"

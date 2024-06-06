@@ -19,7 +19,7 @@ function sendEmail($to, $subject, $message, $headers) {
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
 
-        $mail->setFrom('wahyu@mxsolution.id', 'wahyu gtg');
+        $mail->setFrom('wahyu@mxsolution.id', 'MxRemoteSolutions');
         $mail->addAddress($to); // Alamat email penerima
 
         $mail->isHTML(false); 

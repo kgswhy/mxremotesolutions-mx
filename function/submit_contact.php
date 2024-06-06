@@ -45,7 +45,7 @@ try {
                   . "From: $name\n"
                   . "Email: $email\n"
                   . "Subject: $subject\n"
-                  . "Phine Number: $phone\n"
+                  . "Phone Number: $phone\n"
                   . "Message:\n$message\n\n"
                   . "Please respond to the sender as soon as possible.\n\n"
                   . "Best regards,\n"

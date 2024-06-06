@@ -117,6 +117,12 @@ $totalPositions = get_total_positions();
                         Blog
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="contact.php" class="nav-link text-white">
+                        <i class="bi bi-envelope"></i>
+                        Contact
+                    </a>
+                </li>
             </ul>
     <hr>
     <div class="dropdown">

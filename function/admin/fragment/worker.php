@@ -67,7 +67,7 @@ if (!is_admin_logged_in()) {
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link text-white">
+                    <a href="index.php" class="nav-link text-white ">
                         <i class="bi bi-house"></i>
                         Home
                     </a>
@@ -101,6 +101,12 @@ if (!is_admin_logged_in()) {
                     <a href="blog_page.php" class="nav-link text-white">
                         <i class="bi bi-journal"></i>
                         Blog
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.php" class="nav-link text-white">
+                        <i class="bi bi-envelope"></i>
+                        Contact
                     </a>
                 </li>
             </ul>

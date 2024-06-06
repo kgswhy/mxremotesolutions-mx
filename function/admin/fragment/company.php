@@ -76,7 +76,6 @@ $total_pages = ceil($total_companies / $items_per_page);
 <body>
     <!-- Sidebar -->
     
-   
     <div class="d-flex">
     <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100vh;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -85,7 +84,7 @@ $total_pages = ceil($total_companies / $items_per_page);
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link text-white">
+                    <a href="index.php" class="nav-link text-white ">
                         <i class="bi bi-house"></i>
                         Home
                     </a>
@@ -119,6 +118,12 @@ $total_pages = ceil($total_companies / $items_per_page);
                     <a href="blog_page.php" class="nav-link text-white">
                         <i class="bi bi-journal"></i>
                         Blog
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.php" class="nav-link text-white">
+                        <i class="bi bi-envelope"></i>
+                        Contact
                     </a>
                 </li>
             </ul>

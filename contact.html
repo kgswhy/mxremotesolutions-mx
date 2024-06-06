@@ -32,6 +32,30 @@
 </head>
 
 <body>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true"
+            style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); background: #d1e7fd;">
+            <div class="toast-header">
+                <strong class="me-auto">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Data has been successfully submitted!
+            </div>
+        </div>
+    </div>
+
+    <div id="loader" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p>Loading...</p>
+    </div>
+
+    
+    
+
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -214,6 +238,59 @@
         </div>
     </div>
     <!-- Footer End -->
+    <!-- Spinner Start -->
+<div id="spinner" class="bg-transparent position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center" style="z-index: 9999; display: none;">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<!-- Spinner End -->
+
+
+    <script>
+        $(document).ready(function() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.has('success') && params.get('success') === 'true') {
+                const myToast = new bootstrap.Toast(document.querySelector('.toast'));
+                myToast.show(); // Tampilkan toast saat parameter 'success=true'
+            }
+        });
+    </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Mencegah form dari submit secara default
+            
+            // Menampilkan spinner loader
+            const spinner = document.querySelector("#spinner");
+            spinner.classList.add("show");
+
+            // Melakukan submit form
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: form.method,
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect atau tindakan lain setelah submit berhasil
+                    window.location.href = response.url;
+                } else {
+                    throw new Error("Failed to submit form.");
+                }
+            })
+            .catch(error => {
+                console.error("Form submission error:", error);
+                // Menyembunyikan spinner loader jika terjadi kesalahan saat submit
+                spinner.classList.remove("show");
+            });
+        });
+    });
+</script>
+
+
 
 
     <!-- Back to Top -->

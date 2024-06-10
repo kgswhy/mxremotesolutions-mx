@@ -59,7 +59,7 @@ $posts = getPosts();
     </div>
     <!-- Spinner End -->
     <div class="d-flex">
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100vh;">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100vh;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <span class="fs-4">Admin Dashboard</span>
             </a>
@@ -89,11 +89,6 @@ $posts = getPosts();
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="interview.php">Interview</a></li>
-                        <li><a class="dropdown-item" href="#">Menu Item 2</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Menu Item 3</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -109,19 +104,19 @@ $posts = getPosts();
                     </a>
                 </li>
             </ul>
-    <hr>
-    <div class="dropdown">
-        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-            data-bs-toggle="dropdown">
-            <i class="bi bi-person-circle"></i>
-            <strong>Profile</strong>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="../../logout.php">Logout</a></li>
-        </ul>
-    </div>
-</div>
+            <hr>
+            <div class="dropup">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle"></i>
+                    <strong>Profile</strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <li><a class="dropdown-item" href="./change_password.php">Change Password</a></li>
+                    <li><a class="dropdown-item" href="../../logout.php">Logout</a></li>
+                </ul>
+            </div>
+        </div>
 
         <!-- Main Content -->
         <div class="container-fluid px-4">
@@ -256,7 +251,8 @@ $posts = getPosts();
                             </div>
                             <div class="mb-3">
                                 <label for="edit-image" class="form-label">Image</label>
-                                <input type="file" class="form-control" id="edit-image" name="image" rbloequired>
+                                <input type="file" class="form-control" id="edit-image" name="image"
+                                    rbloequired>
                             </div>
                             <div class="mb-3">
                                 <label for="edit-description" class="form-label">Description</label>

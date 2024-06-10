@@ -456,7 +456,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <p><b>PT Max Pandai Education</b>
                         <br>Jakarta, Indonesia<br>
                         +62 815 9221 333<br>
-                        hello@mxsolution.id
+                        hello@mxremotesolutions.com
                     </p>
                 </div>
             </div>

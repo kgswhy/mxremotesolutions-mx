@@ -60,7 +60,7 @@ if (!is_admin_logged_in()) {
     <!-- Spinner End -->
 
     <div class="d-flex">
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100vh;">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100vh;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <span class="fs-4">Admin Dashboard</span>
             </a>
@@ -110,141 +110,139 @@ if (!is_admin_logged_in()) {
                     </a>
                 </li>
             </ul>
-    <hr>
-    <div class="dropdown">
-        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-            data-bs-toggle="dropdown">
-            <i class="bi bi-person-circle"></i>
-            <strong>Profile</strong>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="../../logout.php">Logout</a></li>
-        </ul>
-    </div>
-</div>
-
-
-    <!-- Konten Utama -->
-<div class="container-fluid p-4" style="overflow-x: auto; height: 100vh">
-    <div class="row mb-3 align-items-center">
-        <div class="col-md-6"> <!-- Kolom pertama untuk judul -->
-            <h1 class="my-4">List of Workers</h1>
-        </div>
-        <div class="col-md-6 text-end">
-            <div class="d-flex justify-content-end align-items-center">
-                <div class="form-group mb-0 me-2">
-                    <select id="positionFilter" class="form-select">
-                        <option value="">All Positions</option>
-                        <?php
-                        require '../../position_function.php';
-                        $positions = get_positions(); // Assuming this function gets unique positions from the database
-                        foreach ($positions as $position) {
-                            echo "<option value='{$position['name']}'>{$position['name']}</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="form-group mb-0">
-                    <select id="statusFilter" class="form-select">
-                        <option value="">All Status Worker</option>
-                        <?php
-                        require '../../getData.php';
-                        foreach ($status_workers as $status) {
-                            echo "<option value='{$status['name']}'>{$status['name']}</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
+            <hr>
+            <div class="dropup">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle"></i>
+                    <strong>Profile</strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <li><a class="dropdown-item" href="./change_password.php">Change Password</a></li>
+                    <li><a class="dropdown-item" href="../../logout.php">Logout</a></li>
+                </ul>
             </div>
         </div>
-    </div>
-    <div class="table-responsive">
-        <table id="workerTable" class="table table-striped">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Full Name</th>
-                    <th>Short Name</th>
-                    <th>Gender</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Position</th>
-                    <th>Position Remark</th>
-                    <th>Status Worker</th>
-                    <th>Detail</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                require '../../worker_function.php';
-                
-                $workers = get_workers();
-                $counter = 1;
-                
-                foreach ($workers as $worker) {
-                    echo '<tr>';
-                    echo "<td>{$counter}</td>";
-                    echo "<td>{$worker['fullname']}</td>";
-                    echo "<td>{$worker['shortname']}</td>";
-                    echo "<td>{$worker['gender_name']}</td>";
-                    echo "<td>{$worker['phone']}</td>";
-                    echo "<td>{$worker['email']}</td>";
-                    echo "<td>{$worker['position_table_name']}</td>";
-                    echo "<td>{$worker['position_remark']}</td>";
-                    echo "<td>{$worker['status_worker_name']}</td>";
-                    echo "<td><a href='./worker_detail.php?id={$worker['id']}' class='btn btn-primary'>Lihat Detail</a></td>";
-                    echo '</tr>';
-                    $counter++;
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
-</div>
 
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../lib/wow/wow.min.js"></script>
-    <script src="../../../lib/easing/easing.min.js"></script>
-    <script src="../../../lib/waypoints/waypoints.min.js"></script>
-    <script src="../../../lib/owlcarousel/owl.carousel.min.js"></script>
+        <!-- Konten Utama -->
+        <div class="container-fluid p-4" style="overflow-x: auto; height: 100vh">
+            <div class="row mb-3 align-items-center">
+                <div class="col-md-6"> <!-- Kolom pertama untuk judul -->
+                    <h1 class="my-4">List of Workers</h1>
+                </div>
+                <div class="col-md-6 text-end">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div class="form-group mb-0 me-2">
+                            <select id="positionFilter" class="form-select">
+                                <option value="">All Positions</option>
+                                <?php
+                                require '../../position_function.php';
+                                $positions = get_positions(); // Assuming this function gets unique positions from the database
+                                foreach ($positions as $position) {
+                                    echo "<option value='{$position['name']}'>{$position['name']}</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group mb-0">
+                            <select id="statusFilter" class="form-select">
+                                <option value="">All Status Worker</option>
+                                <?php
+                                require '../../getData.php';
+                                foreach ($status_workers as $status) {
+                                    echo "<option value='{$status['name']}'>{$status['name']}</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="workerTable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Full Name</th>
+                            <th>Short Name</th>
+                            <th>Gender</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Position</th>
+                            <th>Position Remark</th>
+                            <th>Status Worker</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        require '../../worker_function.php';
+                        
+                        $workers = get_workers();
+                        $counter = 1;
+                        
+                        foreach ($workers as $worker) {
+                            echo '<tr>';
+                            echo "<td>{$counter}</td>";
+                            echo "<td>{$worker['fullname']}</td>";
+                            echo "<td>{$worker['shortname']}</td>";
+                            echo "<td>{$worker['gender_name']}</td>";
+                            echo "<td>{$worker['phone']}</td>";
+                            echo "<td>{$worker['email']}</td>";
+                            echo "<td>{$worker['position_table_name']}</td>";
+                            echo "<td>{$worker['position_remark']}</td>";
+                            echo "<td>{$worker['status_worker_name']}</td>";
+                            echo "<td><a href='./worker_detail.php?id={$worker['id']}' class='btn btn-primary'>Lihat Detail</a></td>";
+                            echo '</tr>';
+                            $counter++;
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="../../../js/main.js"></script>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../../../lib/wow/wow.min.js"></script>
+        <script src="../../../lib/easing/easing.min.js"></script>
+        <script src="../../../lib/waypoints/waypoints.min.js"></script>
+        <script src="../../../lib/owlcarousel/owl.carousel.min.js"></script>
 
-    <!-- Initialize DataTables -->
-    <script>
-        $(document).ready(function() {
-        var table = $('#workerTable').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": true,
-            "pageLength": 20,
-        });
+        <!-- DataTables JS -->
+        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
-        // Filter by position
-        $('#positionFilter').on('change', function() {
-            var positionName = $(this).val();
-            table.column(6).search(positionName).draw(); // assuming position is at 6th column
-        });
-        $('#statusFilter').on('change', function() {
-            var statusName = $(this).val();
-            table.column(7).search(statusName).draw(); // assuming position is at 6th column
-        });
-    });// assuming position is at 6th column
-    </script>
+        <!-- Template Javascript -->
+        <script src="../../../js/main.js"></script>
+
+        <!-- Initialize DataTables -->
+        <script>
+            $(document).ready(function() {
+                var table = $('#workerTable').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": true,
+                    "pageLength": 20,
+                });
+
+                // Filter by position
+                $('#positionFilter').on('change', function() {
+                    var positionName = $(this).val();
+                    table.column(6).search(positionName).draw(); // assuming position is at 6th column
+                });
+                $('#statusFilter').on('change', function() {
+                    var statusName = $(this).val();
+                    table.column(7).search(statusName).draw(); // assuming position is at 6th column
+                });
+            }); // assuming position is at 6th column
+        </script>
 </body>
 
 </html>
-
-

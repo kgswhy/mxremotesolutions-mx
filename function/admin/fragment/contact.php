@@ -49,7 +49,7 @@ if (!is_admin_logged_in()) {
 
 <body>
 
-<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true"
             style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); background: #d1e7fd;">
             <div class="toast-header">
@@ -61,7 +61,7 @@ if (!is_admin_logged_in()) {
             </div>
         </div>
     </div>
-    
+
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -71,7 +71,7 @@ if (!is_admin_logged_in()) {
     </div>
     <!-- Spinner End -->
     <div class="d-flex">
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100vh;">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100vh;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <span class="fs-4">Admin Dashboard</span>
             </a>
@@ -101,11 +101,6 @@ if (!is_admin_logged_in()) {
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="interview.php">Interview</a></li>
-                        <li><a class="dropdown-item" href="#">Menu Item 2</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Menu Item 3</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -121,95 +116,95 @@ if (!is_admin_logged_in()) {
                     </a>
                 </li>
             </ul>
-    <hr>
-    <div class="dropdown">
-        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-            data-bs-toggle="dropdown">
-            <i class="bi bi-person-circle"></i>
-            <strong>Profile</strong>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="../../logout.php">Logout</a></li>
-        </ul>
-    </div>
-</div>
-
-
-    <!-- Main Content -->
-    <div class="container-fluid p-4" style="overflow-x: auto; height: 100vh">
-        <div class="row mb-3 align-items-center">
-            <div class="col-md-6">
-                <h1 class="my-4">List of Contacts</h1>
+            <hr>
+            <div class="dropup">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle"></i>
+                    <strong>Profile</strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <li><a class="dropdown-item" href="./change_password.php">Change Password</a></li>
+                    <li><a class="dropdown-item" href="../../logout.php">Logout</a></li>
+                </ul>
             </div>
         </div>
-        <div class="table-responsive">
-            <table id="contactTable" class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Subject</th>
-                        <th>Phone Number</th>
-                        <th>Message</th>
-                        <th>Contact</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    require '../../contact_function.php';
-                    
-                    $contacts = get_contacts();
-                    $counter = 1;
-                    
-                    foreach ($contacts as $contact) {
-                        echo '<tr>';
-                        echo "<td>{$counter}</td>";
-                        echo "<td>{$contact['name']}</td>";
-                        echo "<td>{$contact['email']}</td>";
-                        echo "<td>{$contact['subject']}</td>";
-                        echo "<td>{$contact['phone']}</td>";
-                        echo "<td>{$contact['message']}</td>";
-                        echo "<td><a href='mailto:{$contact['email']}' class='btn btn-primary'>Contact Email</a></td>";
-                        echo '</tr>';
-                        $counter++;
-                    }
-                    ?>
-                </tbody>
-            </table>
+
+
+        <!-- Main Content -->
+        <div class="container-fluid p-4" style="overflow-x: auto; height: 100vh">
+            <div class="row mb-3 align-items-center">
+                <div class="col-md-6">
+                    <h1 class="my-4">List of Contacts</h1>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="contactTable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Phone Number</th>
+                            <th>Message</th>
+                            <th>Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        require '../../contact_function.php';
+                        
+                        $contacts = get_contacts();
+                        $counter = 1;
+                        
+                        foreach ($contacts as $contact) {
+                            echo '<tr>';
+                            echo "<td>{$counter}</td>";
+                            echo "<td>{$contact['name']}</td>";
+                            echo "<td>{$contact['email']}</td>";
+                            echo "<td>{$contact['subject']}</td>";
+                            echo "<td>{$contact['phone']}</td>";
+                            echo "<td>{$contact['message']}</td>";
+                            echo "<td><a href='mailto:{$contact['email']}' class='btn btn-primary'>Contact Email</a></td>";
+                            echo '</tr>';
+                            $counter++;
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../lib/wow/wow.min.js"></script>
-    <script src="../../../lib/easing/easing.min.js"></script>
-    <script src="../../../lib/waypoints/waypoints.min.js"></script>
-    <script src="../../../lib/owlcarousel/owl.carousel.min.js"></script>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../../../lib/wow/wow.min.js"></script>
+        <script src="../../../lib/easing/easing.min.js"></script>
+        <script src="../../../lib/waypoints/waypoints.min.js"></script>
+        <script src="../../../lib/owlcarousel/owl.carousel.min.js"></script>
 
-    <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+        <!-- DataTables JS -->
+        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="../../../js/main.js"></script>
+        <!-- Template Javascript -->
+        <script src="../../../js/main.js"></script>
 
-    <!-- Initialize DataTables -->
-    <script>
-        $(document).ready(function() {
-            $('#contactTable').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": true,
-                "pageLength": 5,
+        <!-- Initialize DataTables -->
+        <script>
+            $(document).ready(function() {
+                $('#contactTable').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": true,
+                    "pageLength": 5,
+                });
             });
-        });
-    </script>
+        </script>
 </body>
 
 </html>

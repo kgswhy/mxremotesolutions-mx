@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     } else {
         // Jika login gagal, tampilkan pesan kesalahan
-        echo "<script>alert('Invalid email or password'); window.location.href='login.php';</script>";
+        echo "<script>alert('Invalid email or password'); window.location.href='./admin/login.php';</script>";
     }
 } else {
     // Jika bukan POST, tampilkan pesan kesalahan
-    echo "<script>alert('Invalid request method'); window.location.href='login.php';</script>";
+    echo "<script>alert('Invalid request method'); window.location.href='./admin/login.php';</script>";
 }

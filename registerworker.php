@@ -152,7 +152,8 @@ require './function/getData.php';
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="desired_position_id">Desired Position: <span style="color: red;">*</span></label>
+                                <label for="desired_position_id">Desired Position: <span
+                                        style="color: red;">*</span></label>
                                 <select id="desired_position_id" name="desired_position_id" class="form-control"
                                     required>
                                     <option value="" selected>Select Desired Position</option>
@@ -163,12 +164,14 @@ require './function/getData.php';
                                         }
                                     }
                                     ?>
+                                    <option value="17">Other</option>
                                 </select>
                             </div>
 
                         </div>
                         <div class="form-group" id="other_position_group" style="display: none;">
-                            <label for="other_position">Specify Other Position: <span style="color: red;">*</span></label>
+                            <label for="other_position">Specify Other Position: <span
+                                    style="color: red;">*</span></label>
                             <input type="text" id="other_position" name="other_position" class="form-control"
                                 placeholder="Please specify other position" required>
                         </div>
@@ -435,7 +438,7 @@ require './function/getData.php';
                     <p><b>PT Max Pandai Education</b>
                         <br>Jakarta, Indonesia<br>
                         +62 815 9221 333<br>
-                        hello@mxsolution.id
+                        hello@mxremotesolutions.com
                     </p>
                 </div>
             </div>

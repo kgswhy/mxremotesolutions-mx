@@ -47,8 +47,8 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
     </div>
     <!-- Spinner End -->
 
- <!-- Navbar Start -->
- <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 class="m-0 text-primary"><img src="img/logo.png" width="200px" /></h2>
         </a>
@@ -64,7 +64,8 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
                 <a href="blog.php" class="nav-item nav-link ">Blog</a>
                 <a href="contact.html" class="nav-item nav-link ">Contact</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle btn btn-primary py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">Register</a>
+                    <a href="#" class="nav-link dropdown-toggle btn btn-primary py-4 px-lg-5 d-none d-lg-block"
+                        data-bs-toggle="dropdown">Register</a>
                     <div class="dropdown-menu fade-down m-0">
                         <a href="registercompany.php" class="dropdown-item active">as Company</a>
                         <a href="registerworker.php" class="dropdown-item">as Worker</a>
@@ -130,7 +131,7 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
                                 <!-- Company Logo -->
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="logo">Company Logo: <span style="color: red;">*</span></label>
+                                        <label for="logo">Company Logo: </label>
                                         <input type="file" id="logo" name="logo" class="form-control"
                                             accept="image/*">
                                     </div>
@@ -202,19 +203,33 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
                                 <!-- Position -->
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="position_id">Job Position: <span
+                                        <label for="desired_position_id">Job Position: <span
                                                 style="color: red;">*</span></label>
-                                        <select id="position_id" name="position_id" class="form-control">
-                                            <option value="" selected>Select Position</option>
+                                        <select id="desired_position_id" name="desired_position_id"
+                                            class="form-control" required>
+                                            <option value="" selected>Select Job Position</option>
                                             <?php
-                                            foreach ($positions as $positions) {
-                                                echo "<option value=\"{$positions['id']}\">{$positions['name']}</option>";
+                                            foreach ($positions as $position) {
+                                                if ($position['status']) {
+                                                    echo "<option value=\"{$position['id']}\">{$position['name']}</option>";
+                                                }
                                             }
                                             ?>
-                                            <!-- Tambahkan opsi lainnya -->
+                                            <option value="17">Other</option>
                                         </select>
+
                                     </div>
+
                                 </div>
+                              <div class="col-lg-6">
+                              <div class="form-group" id="other_position_group" style="display: none;">
+                                            <label for="other_position">Specify Other Position: <span
+                                                    style="color: red;">*</span></label>
+                                            <input type="text" id="other_position" name="other_position"
+                                                class="form-control" placeholder="Please specify other position"
+                                                required>
+                                        </div>
+                              </div>
                                 <!-- Job Quota -->
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -224,18 +239,18 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
                                 </div>
                                 <!-- Job Level -->
                                 <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="job_level_id">Job Level: <span
-                                                style="color: red;">*</span></label>
-                                        <select id="job_level_id" name="job_level_id" class="form-control">
-                                            <option value="" selected>Select Job Level</option>
-                                            <?php
-                                            foreach ($job_levels as $job_levels) {
-                                                echo "<option value=\"{$job_levels['id']}\">{$job_levels['name']}</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
+        
+                                <div class="form-group">
+                                    <label for="job_level_id">Job Level: <span style="color: red;">*</span></label>
+                                    <select id="job_level_id" name="job_level_id" class="form-control">
+                                        <option value="" selected>Select Job Level</option>
+                                        <?php
+                                        foreach ($job_levels as $job_levels) {
+                                            echo "<option value=\"{$job_levels['id']}\">{$job_levels['name']}</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                                 </div>
 
                                 <!-- Job Requirement -->
@@ -257,8 +272,7 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
 
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="refferal_partner">Referral Partner: <span
-                                                style="color: red;">*</span></label>
+                                        <label for="refferal_partner">Referral Partner:</label>
                                         <textarea id="refferal_partner" name="refferal_partner" class="form-control" rows="1"></textarea>
                                     </div>
                                 </div>
@@ -307,7 +321,7 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
                     <p><b>PT Max Pandai Education</b>
                         <br>Jakarta, Indonesia<br>
                         +62 815 9221 333<br>
-                        hello@mxsolution.id
+                        hello@mxremotesolutions.com
                     </p>
                 </div>
             </div>
@@ -333,6 +347,16 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
 
+    <script>
+        document.getElementById('desired_position_id').addEventListener('change', function() {
+            var otherPositionGroup = document.getElementById('other_position_group');
+            if (this.value === '17') {
+                otherPositionGroup.style.display = 'block';
+            } else {
+                otherPositionGroup.style.display = 'none';
+            }
+        });
+    </script>
     <!-- JavaScript Libraries -->
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -347,7 +371,7 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    
+
 </body>
 
 </html>

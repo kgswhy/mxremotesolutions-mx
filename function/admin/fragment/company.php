@@ -7,7 +7,7 @@ if (session_status() == PHP_SESSION_NONE) {
 // Memeriksa apakah admin telah login
 if (!is_admin_logged_in()) {
     // Jika tidak, arahkan ke halaman login
-    header("Location: ../login.php");
+    header('Location: ../login.php');
     exit();
 }
 
@@ -18,7 +18,7 @@ require '../../company_function.php';
 $items_per_page = 5;
 
 // Ambil halaman saat ini, jika tidak ditentukan, default ke halaman 1
-$current_page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+$current_page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int) $_GET['page'] : 1;
 
 // Hitung offset untuk query database
 $offset = ($current_page - 1) * $items_per_page;
@@ -34,6 +34,7 @@ $total_pages = ceil($total_companies / $items_per_page);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>MX Remote Solutions - Company List</title>
@@ -43,7 +44,9 @@ $total_pages = ceil($total_companies / $items_per_page);
     <link href="../../img/favicon.png" rel="icon">
 
     <!-- Google Web Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -61,23 +64,28 @@ $total_pages = ceil($total_companies / $items_per_page);
             border-radius: 10px;
             padding: 20px;
         }
+
         .company-logo {
             max-width: 400px;
             max-height: 200px;
             margin-bottom: 10px;
             align-items: center;
         }
+
         .main-content {
-            overflow-y: auto; /* Tambahkan properti overflow-y untuk membuat konten dapat di-scroll */
-            height: calc(100vh - 56px); /* Sesuaikan tinggi dengan tinggi viewport dikurangi tinggi navbar */
+            overflow-y: auto;
+            /* Tambahkan properti overflow-y untuk membuat konten dapat di-scroll */
+            height: calc(100vh - 56px);
+            /* Sesuaikan tinggi dengan tinggi viewport dikurangi tinggi navbar */
         }
     </style>
 </head>
+
 <body>
     <!-- Sidebar -->
-    
+
     <div class="d-flex">
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100vh;">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100vh;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <span class="fs-4">Admin Dashboard</span>
             </a>
@@ -101,17 +109,12 @@ $total_pages = ceil($total_companies / $items_per_page);
                         Worker
                     </a>
                     <button type="button"
-                        class="btn btn-link nav-link text-white dropdown-toggle dropdown-toggle-split"
+                        class="btn btn-link nav-link text-whitcpe dropdown-toggle dropdown-toggle-split"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="interview.php">Interview</a></li>
-                        <li><a class="dropdown-item" href="#">Menu Item 2</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Menu Item 3</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -127,46 +130,48 @@ $total_pages = ceil($total_companies / $items_per_page);
                     </a>
                 </li>
             </ul>
-    <hr>
-    <div class="dropdown">
-        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-            data-bs-toggle="dropdown">
-            <i class="bi bi-person-circle"></i>
-            <strong>Profile</strong>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="../../logout.php">Logout</a></li>
-        </ul>
-    </div>
-</div>
+            <hr>
+            <div class="dropup">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle"></i>
+                    <strong>Profile</strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <li><a class="dropdown-item" href="./change_password.php">Change Password</a></li>
+                    <li><a class="dropdown-item" href="../../logout.php">Logout</a></li>
+                </ul>
+            </div>
+        </div>
 
-    <div class="main-content">
-        <div class="container">
-            <h1 class="my-4">List of Companies</h1>
-            <?php foreach ($companies as $company): ?>
-            <div class="company-card">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="<?php echo $company['logo']; ?>" alt="Company Logo" class="company-logo">
-                    </div>
-                    <div class="col-md-9">
-                        <h3><?php echo $company['name']; ?></h3>
-                        <p><strong>ID:</strong> <?php echo $company['id']; ?></p>
-                        <p><strong>Website:</strong> <a href="<?php echo $company['website']; ?>" target="_blank"><?php echo $company['website']; ?></a></p>
-                        <p><strong>Address:</strong> <?php echo $company['address']; ?></p>
-                        <p><strong>Phone:</strong> <?php echo $company['phone']; ?></p>
-                        <p><strong>PIC Name:</strong> <?php echo $company['pic_name']; ?></p>
-                        <a href="./job_opportunity.php?id=<?php echo $company['id']; ?>" class="btn btn-primary">Job Opportunities</a>
+        <div class="main-content">
+            <div class="container">
+                <h1 class="my-4">List of Companies</h1>
+                <?php foreach ($companies as $company): ?>
+                <div class="company-card">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="<?php echo $company['logo']; ?>" alt="Company Logo" class="company-logo">
+                        </div>
+                        <div class="col-md-9">
+                            <h3><?php echo $company['name']; ?></h3>
+                            <p><strong>ID:</strong> <?php echo $company['id']; ?></p>
+                            <p><strong>Website:</strong> <a href="<?php echo $company['website']; ?>"
+                                    target="_blank"><?php echo $company['website']; ?></a></p>
+                            <p><strong>Address:</strong> <?php echo $company['address']; ?></p>
+                            <p><strong>Phone:</strong> <?php echo $company['phone']; ?></p>
+                            <p><strong>PIC Name:</strong> <?php echo $company['pic_name']; ?></p>
+                            <a href="./job_opportunity.php?id=<?php echo $company['id']; ?>" class="btn btn-primary">Job
+                                Opportunities</a>
+                        </div>
                     </div>
                 </div>
+                <?php endforeach; ?>
             </div>
-            <?php endforeach; ?>
-
         </div>
-    </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

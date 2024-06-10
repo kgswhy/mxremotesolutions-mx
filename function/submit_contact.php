@@ -9,19 +9,13 @@ try {
        // Sanitize and validate form data
        $name = isset($_POST['name']) ? validate_input($_POST['name']) : '';
        $email = isset($_POST['email']) ? validate_email($_POST['email']) : '';
+       $phone = isset($_POST['phone_number']) ? validate_input($_POST['phone_number']) : '';
        $subject = isset($_POST['subject']) ? validate_input($_POST['subject']) : 'No Subject';
        $message = isset($_POST['message']) ? validate_input($_POST['message']) : '';
-       $phone = isset($_POST['phone_number']) ? validate_input($_POST['phone_number']) : '';
    
-       // Debugging: Check if data is being received correctly
-       error_log("Name: $name");
-       error_log("Email: $email");
-       error_log("Subject: $subject");
-       error_log("Message: $message");
-       error_log("Phone: $phone");
    
        // Check if all required fields are filled
-       if (!$name || !$email || !$message) {
+       if (!$name || !$email || !$message || !$phone) {
            throw new Exception("Name, email, and message are required fields.");
        }
    

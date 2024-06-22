@@ -447,3 +447,18 @@
     padding-right: 0;
     border-right: none;
 }
+
+.dropdown-icon {
+    position: relative;
+}
+.dropdown-icon select {
+    width: 100%;
+    padding-right: 30px;
+}
+.dropdown-icon i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}

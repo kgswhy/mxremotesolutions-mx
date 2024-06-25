@@ -64,7 +64,7 @@ require './function/getData.php';
                 <a href="blog.php" class="nav-item nav-link ">Blog</a>
                 <a href="contact.html" class="nav-item nav-link ">Contact</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle btn btn-primary py-4 px-lg-5 d-none d-lg-block"
+                    <a href="#" class="nav-link dropdown-toggle btn btn-primary py-4 px-lg-5"
                         data-bs-toggle="dropdown">Register</a>
                     <div class="dropdown-menu fade-down m-0">
                         <a href="registercompany.php" class="dropdown-item ">as Company</a>
@@ -73,8 +73,8 @@ require './function/getData.php';
                 </div>
                 <a href="contact.html" class="nav-item nav-link"></a>
             </div>
-            <!--a href="" style="color:#000 !important;background-color:#fff !important;border:0px !important;" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Register as Talent<i class="fa fa-arrow-right ms-3"></i></a>
-            <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Register as Company<i class="fa fa-arrow-right ms-3"></i></a-->
+            <!--a href="" style="color:#000 !important;background-color:#fff !important;border:0px !important;" class="btn btn-primary py-4 px-lg-5 ">Register as Talent<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="" class="btn btn-primary py-4 px-lg-5 ">Register as Company<i class="fa fa-arrow-right ms-3"></i></a-->
         </div>
     </nav>
     <!-- Navbar End -->

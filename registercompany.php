@@ -64,7 +64,7 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
                 <a href="blog.php" class="nav-item nav-link ">Blog</a>
                 <a href="contact.html" class="nav-item nav-link ">Contact</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle btn btn-primary py-4 px-lg-5 d-none d-lg-block"
+                    <a href="#" class="nav-link dropdown-toggle btn btn-primary py-4 px-lg-5"
                         data-bs-toggle="dropdown">Register</a>
                     <div class="dropdown-menu fade-down m-0">
                         <a href="registercompany.php" class="dropdown-item active">as Company</a>
@@ -73,8 +73,8 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
                 </div>
                 <a href="contact.html" class="nav-item nav-link"></a>
             </div>
-            <!--a href="" style="color:#000 !important;background-color:#fff !important;border:0px !important;" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Register as Talent<i class="fa fa-arrow-right ms-3"></i></a>
-            <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Register as Company<i class="fa fa-arrow-right ms-3"></i></a-->
+            <!--a href="" style="color:#000 !important;background-color:#fff !important;border:0px !important;" class="btn btn-primary py-4 px-lg-5 ">Register as Talent<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="" class="btn btn-primary py-4 px-lg-5 ">Register as Company<i class="fa fa-arrow-right ms-3"></i></a-->
         </div>
     </nav>
     <!-- Navbar End -->
@@ -357,6 +357,38 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
             }
         });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ambil elemen #other_position_group
+        var otherPositionGroup = document.getElementById('other_position_group');
+        // Ambil input #other_position
+        var otherPositionInput = document.getElementById('other_position');
+
+        // Fungsi untuk menentukan apakah #other_position_group terlihat atau tidak
+        function isOtherPositionVisible() {
+            return otherPositionGroup.style.display !== 'none';
+        }
+
+        // Fungsi untuk mengatur atribut required pada #other_position sesuai dengan visibilitas #other_position_group
+        function toggleOtherPositionRequired() {
+            if (isOtherPositionVisible()) {
+                otherPositionInput.setAttribute('required', 'required');
+            } else {
+                otherPositionInput.removeAttribute('required');
+            }
+        }
+
+        // Panggil fungsi saat halaman dimuat
+        toggleOtherPositionRequired();
+
+        // Tambahkan event listener untuk memantau perubahan pada #other_position_group
+        // Jika perlu, ganti event yang digunakan (misalnya change untuk select, click untuk tombol radio, dll.)
+        otherPositionGroup.addEventListener('input', toggleOtherPositionRequired);
+        otherPositionGroup.addEventListener('change', toggleOtherPositionRequired);
+    });
+</script>
+
     <!-- JavaScript Libraries -->
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

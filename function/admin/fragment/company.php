@@ -44,9 +44,7 @@ $total_pages = ceil($total_companies / $items_per_page);
     <link href="../../img/favicon.png" rel="icon">
 
     <!-- Google Web Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -55,36 +53,18 @@ $total_pages = ceil($total_companies / $items_per_page);
     <!-- Bootstrap CSS -->
     <link href="../../../css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
     <!-- Custom Stylesheet -->
     <link href="../../../css/style.css" rel="stylesheet">
-    <style>
-        .company-card {
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 20px;
-        }
-
-        .company-logo {
-            max-width: 400px;
-            max-height: 200px;
-            margin-bottom: 10px;
-            align-items: center;
-        }
-
-        .main-content {
-            overflow-y: auto;
-            /* Tambahkan properti overflow-y untuk membuat konten dapat di-scroll */
-            height: calc(100vh - 56px);
-            /* Sesuaikan tinggi dengan tinggi viewport dikurangi tinggi navbar */
-        }
-    </style>
+    
 </head>
 
 <body>
-    <!-- Sidebar -->
+   <!-- Sidebar -->
 
-    <div class="d-flex">
+   <div class="d-flex">
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100vh;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <span class="fs-4">Admin Dashboard</span>
@@ -109,7 +89,7 @@ $total_pages = ceil($total_companies / $items_per_page);
                         Worker
                     </a>
                     <button type="button"
-                        class="btn btn-link nav-link text-whitcpe dropdown-toggle dropdown-toggle-split"
+                        class="btn btn-link nav-link text-white dropdown-toggle dropdown-toggle-split"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
@@ -144,34 +124,110 @@ $total_pages = ceil($total_companies / $items_per_page);
             </div>
         </div>
 
-        <div class="main-content">
-            <div class="container">
-                <h1 class="my-4">List of Companies</h1>
-                <?php foreach ($companies as $company): ?>
-                <div class="company-card">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="<?php echo $company['logo']; ?>" alt="Company Logo" class="company-logo">
-                        </div>
-                        <div class="col-md-9">
-                            <h3><?php echo $company['name']; ?></h3>
-                            <p><strong>ID:</strong> <?php echo $company['id']; ?></p>
-                            <p><strong>Website:</strong> <a href="<?php echo $company['website']; ?>"
-                                    target="_blank"><?php echo $company['website']; ?></a></p>
-                            <p><strong>Address:</strong> <?php echo $company['address']; ?></p>
-                            <p><strong>Phone:</strong> <?php echo $company['phone']; ?></p>
-                            <p><strong>PIC Name:</strong> <?php echo $company['pic_name']; ?></p>
-                            <a href="./job_opportunity.php?id=<?php echo $company['id']; ?>" class="btn btn-primary">Job
-                                Opportunities</a>
-                        </div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
+
+    <!-- Main Content -->
+        <div class="container-fluid p-4" style="overflow-x: auto; height: 100vh">
+            <h1 class="my-4">List of Companies</h1>
+            <div class="table-responsive">
+                <table id="companyTable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Logo</th>
+                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Website</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>PIC Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($companies as $company): ?>
+                        <tr>
+                            <td>
+                                <?php if (!empty($company['logo'])): ?>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#companyModal_<?php echo $company['id']; ?>">
+                                    See Logo Image
+                                </button>
+                                <div class="modal fade" id="companyModal_<?php echo $company['id']; ?>" tabindex="-1"
+                                    aria-labelledby="companyModalLabel_<?php echo $company['id']; ?>" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"
+                                                    id="companyModalLabel_<?php echo $company['id']; ?>">
+                                                    <?php echo $company['name']; ?> Logo</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="<?php echo $company['logo']; ?>" alt="Company Logo"
+                                                    style="max-width: 100%; height: auto;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php else: ?>
+                                <span>No logo available</span>
+                                <?php endif; ?>
+                            </td>
+                            <td><?php echo $company['name']; ?></td>
+                            <td><?php echo $company['id']; ?></td>
+                            <td>
+                                <?php if (!empty($company['website'])): ?>
+                                <a href="<?php echo $company['website']; ?>" target="_blank"
+                                    class="btn btn-primary">Visit Website</a>
+                                <?php else: ?>
+                                <span>No website available</span>
+                                <?php endif; ?>
+                            </td>
+                            <td><?php echo $company['address']; ?></td>
+                            <td><?php echo $company['phone']; ?></td>
+                            <td><?php echo $company['pic_name']; ?></td>
+                            <td>
+                                <a href="./job_opportunity.php?id=<?php echo $company['id']; ?>"
+                                    class="btn btn-primary">Job Opportunities</a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#companyTable').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                
+                "autoWidth": false,
+                "responsive": true,
+                "language": {
+                    "paginate": {
+                        "previous": '<i class="bi bi-chevron-left"></i>',
+                        "next": '<i class="bi bi-chevron-right"></i>'
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
+

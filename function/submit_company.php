@@ -29,8 +29,10 @@ try {
             echo 'Maaf, terjadi kesalahan saat mengunggah file.';
         }
     } else {
-        echo 'Maaf, tidak ada file yang diunggah.';
+        // Jika tidak ada file yang diunggah, biarkan $logo tetap null atau sesuai dengan nilai default yang Anda tentukan
+        $logo = null; // Atau bisa dibiarkan tanpa perubahan, tergantung bagaimana variabel $logo diinisialisasi sebelumnya
     }
+
     // Insert data ke dalam tabel "company"
     $sql = "INSERT INTO company (name, logo, website, address, phone, pic_name, pic_phone, pic_email)
             VALUES (:name, :logo, :website, :address, :phone, :pic_name, :pic_phone, :pic_email)";
@@ -51,7 +53,7 @@ try {
     $company_id = $pdo->lastInsertId();
 
     // Data dari bagian Worker Request
-    $position_id = (int) $_POST['position_id'];
+    $position_id = (int) $_POST['desired_position_id'];
     $quota = (int) $_POST['quota'];
     $job_level_id = (int) $_POST['job_level_id'];
     $requirement = clean_input($_POST['job_requirement']);
@@ -60,12 +62,12 @@ try {
 
     // Insert data ke dalam tabel "job_opportunity"
     $job_sql = "INSERT INTO job_opportunity (company_id, position_id, quota, job_level_id, requirement, description, referral)
-                VALUES (:company_id, :position_id, :quota, :job_level_id, :requirement, :description, :referral)";
+                VALUES (:company_id, :desired_position_id, :quota, :job_level_id, :requirement, :description, :referral)";
 
     $stmt = $pdo->prepare($job_sql);
     $stmt->execute([
         ':company_id' => $company_id,
-        ':position_id' => $position_id,
+        ':desired_position_id' => $position_id,
         ':quota' => $quota,
         ':job_level_id' => $job_level_id,
         ':requirement' => $requirement,

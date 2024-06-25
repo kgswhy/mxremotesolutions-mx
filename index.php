@@ -7,54 +7,56 @@ require './function/getData.php';
 
 <head>
     <meta charset="utf-8">
-    <title>MX Remote Solutions</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-    <meta charset="utf-8">
     <title>MX Remote Solutions: Your Bridge to Global Remote Talent</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Meta tags for SEO -->
     <meta name="description"
         content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
     <meta name="keywords"
         content="remote work, remote jobs, global talent, talent acquisition, Indonesia, international, remote teams, hiring, job opportunities">
     <meta name="robots" content="index, follow">
 
+    <!-- Open Graph meta tags -->
     <meta property="og:title" content="MX Remote Solutions: Your Bridge to Global Remote Talent">
     <meta property="og:description"
         content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mxremotesolutions.com/">
+    <meta property="og:image" content="https://mxremotesolutions.com/registerworker.php">
 
+    <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="MX Remote Solutions: Your Bridge to Global Remote Talent">
     <meta name="twitter:description"
         content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
-
+    <meta name="twitter:image" content="https://mxremotesolutions.com/contact.html">
 
     <!-- Favicon -->
-    <link href="img/favicon.png" rel="icon" >
+    <link href="img/favicon.png" rel="icon">
 
-    <!-- Google Web Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
+    <!-- Icon Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
+    <!-- Libraries Stylesheets -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
+    <!-- Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Template Stylesheet -->
+    <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 </head>
+
 
 <body>
     <!-- Spinner Start -->
@@ -69,137 +71,129 @@ require './function/getData.php';
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"><img src="img/logo.webp" width="200px" alt="Logo MX Remote Solutions"/></h2>
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.php" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About Us</a>
-                <a href="services.php" class="nav-item nav-link">Services</a>
-                <a href="job.php" class="nav-item nav-link">Job Opportunities</a>
-                <a href="blog.php" class="nav-item nav-link">Blog</a>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle btn btn-primary py-4 px-lg-5 "
-                        data-bs-toggle="dropdown">Register</a>
-                    <div class="dropdown-menu fade-down m-0">
-                        <a href="registercompany.php" class="dropdown-item">as Company</a>
-                        <a href="registerworker.php" class="dropdown-item">as Worker</a>
-                    </div>
+    <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <h2 class="m-0 text-primary"><img src="img/logo.webp" width="200px" alt="Logo MX Remote Solutions"></h2>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon">...</span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="index.php" class="nav-item nav-link active" style="color: #000;">Home</a>
+            <a href="about.html" class="nav-item nav-link" style="color: #000;">About Us</a>
+            <a href="services.php" class="nav-item nav-link" style="color: #000;">Services</a>
+            <a href="job.php" class="nav-item nav-link" style="color: #000;">Job Opportunities</a>
+            <a href="blog.php" class="nav-item nav-link" style="color: #000;">Blog</a>
+            <a href="contact.html" class="nav-item nav-link" style="color: #000;">Contact</a>
+            <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle btn btn-primary py-4 px-lg-5" style="text-shadow: 0 0 3px rgba(0,0,0,0.5);" data-bs-toggle="dropdown">Register</a>
+            <div class="dropdown-menu fade-down m-0">
+                    <a href="registercompany.php" class="dropdown-item">as Company</a>
+                    <a href="registerworker.php" class="dropdown-item">as Worker</a>
                 </div>
-                <a href="contact.html" class="nav-item nav-link"></a>
             </div>
-            <!--a href="" style="color:#000 !important;background-color:#fff !important;border:0px !important;" class="btn btn-primary py-4 px-lg-5 ">Register as Talent<i class="fa fa-arrow-right ms-3"></i></a>
-            <a href="" class="btn btn-primary py-4 px-lg-5 ">Register as Company<i class="fa fa-arrow-right ms-3"></i></a-->
         </div>
-    </nav>
+        <!--
+        <a href="" style="color:#000 !important;background-color:#fff !important;border:0px !important;" class="btn btn-primary py-4 px-lg-5 ">Register as Talent<i class="fa fa-arrow-right ms-3"></i></a>
+        <a href="" class="btn btn-primary py-4 px-lg-5 ">Register as Company<i class="fa fa-arrow-right ms-3"></i></a>
+        -->
+    </div>
+</nav>
+
     <!-- Navbar End -->
 
 
 
     <!-- Carousel Start -->
     <div class="container-fluid p-0 mb-5">
-        <div class="owl-carousel header-carousel position-relative">
-            <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="img/carousel-2.webp" alt="Carousel Slide 2">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
-                    style="background: rgba(24, 29, 56, .7);">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-sm-10 col-lg-8">
-                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">For Intern and
-                                    Professional</h5>
-                                <h1 class="display-3 text-white animated slideInDown">Get Your Dream Remote Jobs</h1>
-                                <p class="fs-5 text-white mb-4 pb-2">Opportunities to work with reputable world
-                                    companies and get access to remote work opportunities that bridge borders. Grow your
-                                    career path and exposure to international work environments!</p>
-                                <a href="job.php"
-                                    class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Find
-                                    Opportunities</a>
-                                <a href="registerworker.php"
-                                    class="btn btn-light py-md-3 px-md-5 animated slideInRight">Register Now</a>
-                            </div>
+    <div class="owl-carousel header-carousel position-relative">
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="img/carousel-2.webp" alt="Carousel Slide 2" style="width: 100%; height: auto;">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-sm-10 col-lg-8">
+                            <h2 class="text-primary text-uppercase animated slideInDown">For Intern and Professional</h2>
+                            <h1 class="display-3 text-white animated slideInDown">Get Your Dream Remote Jobs</h1>
+                            <p class="fs-5 text-white mb-4 pb-2">Opportunities to work with reputable world companies and get access to remote work opportunities that bridge borders. Grow your career path and exposure to international work environments!</p>
+                            <a href="job.php" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Explore Remote Job Opportunities</a>
+                            <a href="registerworker.php" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Register as a Worker</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="img/carousel-1.webp" alt="Carousel Slide 1">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
-                    style="background: rgba(24, 29, 56, .7);">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-sm-10 col-lg-8">
-                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">For Company</h5>
-                                <h1 class="display-3 text-white animated slideInDown">Get Your Top-tier Remote Talents
-                                </h1>
-                                <p class="fs-5 text-white mb-4 pb-2">Access to a wider pool of skilled and
-                                    cost-effective talent and scalable workforce solutions. Hassle-free remote hiring,
-                                    compliance processes and payroll management!</p>
-                                <a href="services.php"
-                                    class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Find Talents</a>
-                                <a href="registercompany.php"
-                                    class="btn btn-light py-md-3 px-md-5 animated slideInRight">Register Now</a>
-                            </div>
+        </div>
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="img/carousel-1.webp" alt="Carousel Slide 1" style="width: 100%; height: auto;">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-sm-10 col-lg-8">
+                            <h2 class="text-primary text-uppercase animated slideInDown">For Company</h2>
+                            <h1 class="display-3 text-white animated slideInDown">Get Your Top-tier Remote Talents</h1>
+                            <p class="fs-5 text-white mb-4 pb-2">Access to a wider pool of skilled and cost-effective talent and scalable workforce solutions. Hassle-free remote hiring, compliance processes and payroll management!</p>
+                            <a href="services.php" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Find Top-tier Remote Talents</a>
+                            <a href="registercompany.php" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Register as a Company</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
+
     <!-- Carousel End -->
 
 
     <!-- Service Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
-                            <h5 class="mb-3">Talent Sourcing and Screening</h5>
-                            <p>Ensuring they possess the required skills and fluency in English for success in a work
-                                environment.</p>
-                        </div>
-                    </div>
+    <div class="container">
+    <div class="row g-4">
+        <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="service-item text-center pt-3">
+                <div class="p-4">
+                    <i class="fa fa-3x fa-graduation-cap text-primary m-2" style="width: 3em; height: 3em;"></i>
+                    <h2>Talent Sourcing and Screening</h2>
+                    <p>Ensuring they possess the required skills and fluency in English for success in a work
+                        environment.</p>
                 </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-globe text-primary mb-4"></i>
-                            <h5 class="mb-3">Remote Onboarding and Support</h5>
-                            <p>Facilitating seamless remote onboarding, including cultural orientation and technology
-                                setup.</p>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="service-item text-center pt-3">
+                <div class="p-4">
+                    <i class="fa fa-3x fa-globe text-primary m-2" style="width: 3em; height: 3em;"></i>
+                    <h2>Remote Onboarding and Support</h2>
+                    <p>Facilitating seamless remote onboarding, including cultural orientation and technology
+                        setup.</p>
                 </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-home text-primary mb-4"></i>
-                            <h5 class="mb-3">Payroll and Compliance Management</h5>
-                            <p>Handling payroll processing, ensuring compliance with both countries employment
-                                regulations.</p>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="service-item text-center pt-3">
+                <div class="p-4">
+                    <i class="fa fa-3x fa-home text-primary m-2" style="width: 3em; height: 3em;"></i>
+                    <h2>Payroll and Compliance Management</h2>
+                    <p>Handling payroll processing, ensuring compliance with both countries employment
+                        regulations.</p>
                 </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
-                            <h5 class="mb-3">Performance Monitoring and Communication</h5>
-                            <p>Implementing performance monitoring systems for successful remote work.</p>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+            <div class="service-item text-center pt-3">
+                <div class="p-4">
+                    <i class="fa fa-3x fa-book-open text-primary m-2" style="width: 3em; height: 3em;"></i>
+                    <h2>Performance Monitoring and Communication</h2>
+                    <p>Implementing performance monitoring systems for successful remote work.</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
+
     <!-- Service End -->
 
 
@@ -209,8 +203,8 @@ require './function/getData.php';
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="img-fluid position-absolute w-100 h-100" src="img/about.webp" alt="About Image Section"
-                            style="object-fit: cover;">
+                        <img class="img-fluid position-absolute w-100 h-100" src="img/about.webp"
+                            alt="About Image Section" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -575,7 +569,11 @@ require './function/getData.php';
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top" aria-label="Back to top">
+        <i class="bi bi-arrow-up" aria-hidden="true"></i>
+        <span class="sr-only">Back to top</span>
+    </a>
+
 
 
     <!-- JavaScript Libraries -->

@@ -10,6 +10,13 @@ if (!is_admin_logged_in()) {
     header('Location: ../login.php');
     exit();
 }
+
+if (!can_access()) {
+    // Redirect to an access denied page or home
+    header('Location: ./access_denied.php');
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>

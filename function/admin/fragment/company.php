@@ -11,6 +11,12 @@ if (!is_admin_logged_in()) {
     exit();
 }
 
+if (!can_access()) {
+    // Redirect to an access denied page or home
+    header('Location: ./access_denied.php');
+    exit();
+}
+
 // Import file dengan fungsi get_company
 require '../../company_function.php';
 

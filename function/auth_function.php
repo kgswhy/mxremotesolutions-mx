@@ -84,3 +84,10 @@ function admin_logout() {
 function is_admin_logged_in() {
     return isset($_SESSION['admin_id']); // Cek apakah sesi admin_id ada
 }
+
+
+function can_access() {
+    $allowed_user_ids = [2, 4, 5]; 
+    
+    return isset($_SESSION['admin_id']) && in_array($_SESSION['admin_id'], $allowed_user_ids);
+}

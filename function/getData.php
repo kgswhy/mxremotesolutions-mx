@@ -1,7 +1,6 @@
 <?php
 // Menggunakan __DIR__ untuk mendapatkan direktori dari file yang sedang berjalan
 require 'db_connection.php';  // Pastikan koneksi ke database
-require  'utilities.php';     // Fungsi utilitas untuk membersihkan data
 
 // Mendapatkan data gender
 $gender_query = $pdo->prepare("SELECT id, name FROM gender");

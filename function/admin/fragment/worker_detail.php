@@ -1,5 +1,7 @@
 <?php
 
+use Google\Service\SecurityCommandCenter\Cve;
+
 require '../../getData.php'; // Mendapatkan data untuk dropdown
 require '../../worker_function.php';
 
@@ -15,6 +17,13 @@ if (!is_admin_logged_in()) {
     header('Location: ../login.php');
     exit();
 }
+
+if (!can_access()) {
+    // Redirect to an access denied page or home
+    header('Location: ./access_denied.php');
+    exit();
+}
+
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $worker_id = (int) $_GET['id'];
     $worker = get_worker_by_id($worker_id);
@@ -26,6 +35,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     die('Invalid Worker ID.');
 }
 
+$encryption_key = 'mxremotesolutions'; // Key untuk enkripsi dan dekripsi
+$worker_id_encrypted = encrypt($worker_id, $encryption_key);
+$encrypted_link = "update_worker.php?id=$worker_id_encrypted";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,11 +59,13 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
+    <!-- Load PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../../css/style.css" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.min.js"></script>
 
     <style>
         .modal-content {
@@ -146,6 +160,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                     <button type="submit" class="btn btn-warning">Update Status</button>
                 </form>
 
+
                 <script>
                     document.getElementById('updateStatusForm').addEventListener('submit', function(event) {
                         var newStatus = document.getElementById('new_status').value;
@@ -158,48 +173,54 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
             </div>
         </div>
-
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Interview Assessment</h4>
-                <form id="interviewAssessmentForm" method="post" action="../../submit_interview_assessment.php">
+                <h4 class="card-title">Update Worker</h4>
+                <a href="<?php echo $encrypted_link; ?>" class="btn btn-primary mt-2">Update Worker</a>
+            </div>
 
-                    <input type="hidden" name="worker_id" value="<?php echo $worker_id; ?>">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Interview Assessment</h4>
+                    <form id="interviewAssessmentForm" method="post" action="../../submit_interview_assessment.php">
 
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="candidate_name">Candidate Name:</label>
-                                <input type="text" id="candidate_name" name="candidate" class="form-control"
-                                    value="<?php echo $worker['fullname']; ?>" readonly>
+                        <input type="hidden" name="worker_id" value="<?php echo $worker_id; ?>">
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="candidate_name">Candidate Name:</label>
+                                    <input type="text" id="candidate_name" name="candidate" class="form-control"
+                                        value="<?php echo $worker['fullname']; ?>" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="applied_position">Applied Position:</label>
+                                    <input type="text" id="applied_position" name="appliedPosition"
+                                        class="form-control" value="<?php echo $worker['position_table_name']; ?>" readonly>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="applied_position">Applied Position:</label>
-                                <input type="text" id="applied_position" name="appliedPosition" class="form-control"
-                                    value="<?php echo $worker['position_table_name']; ?>" readonly>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="interview_date">Interview Date:</label>
-                                <input type="date" id="interview_date" name="interview_date" class="form-control"
-                                    required>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="interview_date">Interview Date:</label>
+                                    <input type="date" id="interview_date" name="interview_date" class="form-control"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="interviewer">Interviewer:</label>
+                                    <input type="text" id="interviewer" name="interviewer" class="form-control"
+                                        required>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="interviewer">Interviewer:</label>
-                                <input type="text" id="interviewer" name="interviewer" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
 
-                    <?php
+                        <?php
             $criteria = [
                 'educational_background_id' => '<b>Educational Background :</b> Does the candidate\'s educational background align well with the requirements of this position?',
                 'prior_work_experience_id' => '<b>Prior Work Experience :</b> To what extent does the candidate\'s past work experience demonstrate the skills and knowledge needed for this role?',
@@ -213,194 +234,289 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             ];
             foreach ($criteria as $field => $label) {
             ?>
-                    <div class="form-group mb-3">
-                        <label class="font-weight-bold"><?php echo $label; ?>:</label>
-                        <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-                            <?php foreach ($rating_options as $option) { ?>
-                            <label class="btn btn-outline-primary">
-                                <input type="radio" id="<?php echo $field . '_' . $option['rating_id']; ?>" name="<?php echo $field; ?>"
-                                    value="<?php echo $option['rating_id']; ?>" required>
-                                <?php echo $option['rating_value']; ?>
-                            </label>
-                            <?php } ?>
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold"><?php echo $label; ?>:</label>
+                            <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                                <?php foreach ($rating_options as $option) { ?>
+                                <label class="btn btn-outline-primary">
+                                    <input type="radio" id="<?php echo $field . '_' . $option['rating_id']; ?>" name="<?php echo $field; ?>"
+                                        value="<?php echo $option['rating_id']; ?>" required>
+                                    <?php echo $option['rating_value']; ?>
+                                </label>
+                                <?php } ?>
+                            </div>
                         </div>
-                    </div>
-                    <?php } ?>
+                        <?php } ?>
 
 
-                    <div class="form-group mb-3">
-                        <label for="overall_recommendation">Overall Recommendation:</label>
-                        <select id="overall_recommendation" name="overall_recommendation" class="form-control" required>
-                            <option value="Not Fill Recomendation">Select Recommendation</option>
-                            <option value="Strongly not recommended">Strongly not recommended</option>
-                            <option value="Better Not recommended">Better not recommended</option>
-                            <option value="Recommended">Recommended</option>
-                        </select>
-                    </div>
+                        <div class="form-group mb-3">
+                            <label for="overall_recommendation">Overall Recommendation:</label>
+                            <select id="overall_recommendation" name="overall_recommendation" class="form-control"
+                                required>
+                                <option value="Not Fill Recomendation">Select Recommendation</option>
+                                <option value="Strongly not recommended">Strongly not recommended</option>
+                                <option value="Better Not recommended">Better not recommended</option>
+                                <option value="Recommended">Recommended</option>
+                            </select>
+                        </div>
 
-                    <div class="form-group mb-3">
-                        <label for="notes">Notes:</label>
-                        <textarea id="notes" name="notes" class="form-control" rows="4" required></textarea>
-                    </div>
+                        <div class="form-group mb-3">
+                            <label for="notes">Notes:</label>
+                            <textarea id="notes" name="notes" class="form-control" rows="4" required></textarea>
+                        </div>
 
-                    <button type="submit" class="btn btn-primary">Submit Assessment</button>
-                </form>
+                        <button type="submit" class="btn btn-primary">Submit Assessment</button>
+                    </form>
 
-                <script>
-                    document.getElementById('interviewAssessmentForm').addEventListener('submit', function(event) {
-                        var requiredFields = document.querySelectorAll(
-                            '#interviewAssessmentForm select[required], #interviewAssessmentForm input[type="radio"][required]'
+                    <script>
+                        document.getElementById('interviewAssessmentForm').addEventListener('submit', function(event) {
+                            var requiredFields = document.querySelectorAll(
+                                '#interviewAssessmentForm select[required], #interviewAssessmentForm input[type="radio"][required]'
                             );
-                        for (var i = 0; i < requiredFields.length; i++) {
-                            if (!requiredFields[i].value) {
-                                event.preventDefault();
-                                alert('Please fill in all required fields.');
-                                return;
+                            for (var i = 0; i < requiredFields.length; i++) {
+                                if (!requiredFields[i].value) {
+                                    event.preventDefault();
+                                    alert('Please fill in all required fields.');
+                                    return;
+                                }
                             }
-                        }
-                    });
-                </script>
+                        });
+                    </script>
+                </div>
             </div>
-        </div>
 
 
 
 
-        <!-- Personal Information & Educational Background -->
-        <div class="row">
-            <!-- Personal Information -->
-            <div class="col-md-6">
-                <div class="card mt-4" style="height: 400px;">
-                    <div class="card-body">
-                        <h4 class="card-title">Personal Information</h4>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p><strong>Full Name:</strong> <?php echo htmlspecialchars($worker['fullname']); ?></p>
-                                <p><strong>Short Name:</strong> <?php echo htmlspecialchars($worker['shortname']); ?></p>
-                                <p><strong>Position:</strong> <?php echo htmlspecialchars($worker['position_table_name']); ?></p>
-                                <p><strong>Gender:</strong> <?php echo htmlspecialchars($worker['gender_name']); ?></p>
-                                <p><strong>Phone:</strong> <?php echo htmlspecialchars($worker['phone']); ?></p>
-                                <p><strong>Marital Status:</strong> <?php echo htmlspecialchars($worker['marital_status_name']); ?></p>
-                                <p><strong>Marital Status:</strong> <?php echo htmlspecialchars($worker['religion_name']); ?></p>
+            <!-- Personal Information & Educational Background -->
+            <div class="row">
+                <!-- Personal Information -->
+                <div class="col-md-6">
+                    <div class="card mt-4" style="height: 400px;">
+                        <div class="card-body">
+                            <h4 class="card-title">Personal Information</h4>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Full Name:</strong> <?php echo htmlspecialchars($worker['fullname']); ?></p>
+                                    <p><strong>Short Name:</strong> <?php echo htmlspecialchars($worker['shortname']); ?></p>
+                                    <p><strong>Position:</strong> <?php echo htmlspecialchars($worker['position_table_name']); ?></p>
+                                    <p><strong>Gender:</strong> <?php echo htmlspecialchars($worker['gender_name']); ?></p>
+                                    <p><strong>Phone:</strong> <?php echo htmlspecialchars($worker['phone']); ?></p>
+                                    <p><strong>Marital Status:</strong> <?php echo htmlspecialchars($worker['marital_status_name']); ?></p>
+                                    <p><strong>Marital Status:</strong> <?php echo htmlspecialchars($worker['religion_name']); ?></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Email:</strong> <?php echo htmlspecialchars($worker['email']); ?></p>
+                                    <p><strong>Address:</strong> <?php echo htmlspecialchars($worker['address']); ?></p>
+                                    <p><strong>Birthplace:</strong> <?php echo htmlspecialchars($worker['birthplace']); ?></p>
+                                    <p><strong>Birthday:</strong> <?php echo htmlspecialchars($worker['birthday']); ?></p>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <p><strong>Email:</strong> <?php echo htmlspecialchars($worker['email']); ?></p>
-                                <p><strong>Address:</strong> <?php echo htmlspecialchars($worker['address']); ?></p>
-                                <p><strong>Birthplace:</strong> <?php echo htmlspecialchars($worker['birthplace']); ?></p>
-                                <p><strong>Birthday:</strong> <?php echo htmlspecialchars($worker['birthday']); ?></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Educational Background -->
+                <div class="col-md-6">
+                    <div class="card mt-4" style="height: 400px;">
+                        <div class="card-body">
+                            <h4 class="card-title">Educational Background</h4>
+                            <hr>
+                            <p><strong>Current Education Level:</strong> <?php echo htmlspecialchars($worker['current_education_level_name']); ?></p>
+                            <p><strong>Current Major:</strong> <?php echo htmlspecialchars($worker['current_major']); ?></p>
+                            <p><strong>Current School:</strong> <?php echo htmlspecialchars($worker['current_school']); ?></p>
+                            <p><strong>Last Education Level:</strong> <?php echo htmlspecialchars($worker['last_education_level_name']); ?></p>
+                            <p><strong>Last Major:</strong> <?php echo htmlspecialchars($worker['last_major']); ?></p>
+                            <p><strong>English Proficiency:</strong>
+                                <?php
+                                $levels = [
+                                    1 => 'Beginner',
+                                    2 => 'Intermediate',
+                                    3 => 'Advanced',
+                                    4 => 'Fluent',
+                                    5 => 'Native',
+                                ];
+                                
+                                echo isset($levels[(int) $worker['english_proficiency']]) ? htmlspecialchars($levels[(int) $worker['english_proficiency']]) : 'Unknown';
+                                ?>
+                            </p>
+                            <p><strong>Toefl Score:</strong> <?php echo htmlspecialchars($worker['toefl_score']); ?></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Work Experience -->
+                <div class="col-md-6">
+                    <div class="card mt-4" style="height: 400px;">
+                        <div class="card-body">
+                            <h4 class="card-title">Work Experience</h4>
+                            <hr>
+                            <p><strong>Last Position:</strong> <?php echo htmlspecialchars($worker['last_position']); ?></p>
+                            <p><strong>Last Company:</strong> <?php echo htmlspecialchars($worker['last_company']); ?></p>
+                            <p><strong>Last Job Description:</strong> <?php echo htmlspecialchars($worker['last_job_desc']); ?></p>
+                            <p><strong>Skill Level:</strong>
+                                <?php
+                                $levels = [
+                                    1 => 'Beginner',
+                                    2 => 'Intermediate',
+                                    3 => 'Advanced',
+                                    4 => 'Expert',
+                                    5 => 'Master',
+                                ];
+                                
+                                echo isset($levels[(int) $worker['skill_level']]) ? htmlspecialchars($levels[(int) $worker['skill_level']]) : 'Unknown';
+                                ?>
+                            </p>
+                            <p><strong>Internet:</strong>
+                                <?php
+                                $qualities = [
+                                    1 => 'Very Poor',
+                                    2 => 'Poor',
+                                    3 => 'Average',
+                                    4 => 'Good',
+                                    5 => 'Excellent',
+                                ];
+                                
+                                echo isset($qualities[(int) $worker['internet']]) ? htmlspecialchars($qualities[(int) $worker['internet']]) : 'Unknown';
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Documents and Portfolio -->
+                <div class="col-md-6">
+                    <div class="card mt-4" style="height: 400px;">
+                        <div class="card-body">
+                            <h4 class="card-title">Documents and Portfolio</h4>
+                            <hr>
+
+                            <?php if (empty($worker['introduction']) && empty($worker['cv']) && empty($worker['portofolio'])): ?>
+                            <p>Document & portfolio not available</p>
+                            <?php endif; ?>
+
+                            <?php if (!empty($worker['introduction'])): ?>
+                            <p><strong>Introduction:</strong> <a href="#" data-bs-toggle="modal"
+                                    data-bs-target="#introductionModal">Watch Video (Audio Only)</a></p>
+
+                            <div class="modal fade" id="introductionModal" tabindex="-1"
+                                aria-labelledby="introductionModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="introductionModalLabel">Introduction Video
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <video controls style="width: 100%;">
+                                                <source src="<?php echo htmlspecialchars($worker['introduction']); ?>" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <?php endif; ?>
+
+                            <?php if (!empty($worker['cv'])): ?>
+                            <p><strong>CV:</strong> <a href="#" data-bs-toggle="modal"
+                                    data-bs-target="#cvPreviewModal">Preview</a></p>
+
+                            <!-- Bootstrap Modal -->
+                            <div class="modal fade" id="cvPreviewModal" tabindex="-1"
+                                aria-labelledby="cvPreviewModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="cvPreviewModalLabel">CV Preview</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <embed src="<?php echo htmlspecialchars($worker['cv']); ?>" type="application/pdf" width="100%"
+                                                height="600px">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <?php endif; ?>
+                            <?php if (!empty($worker['portofolio'])): ?>
+                            <p><strong>Portofolio:</strong> <a href="#" data-bs-toggle="modal"
+                                    data-bs-target="#PortofolioPreviewModal">Preview</a></p>
+
+                            <div class="modal fade" id="PortofolioPreviewModal" tabindex="-1"
+                                aria-labelledby="PortofolioPreviewModal" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="cvPreviewModalLabel">CV Preview</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <embed src="<?php echo htmlspecialchars($worker['portofolio']); ?>" type="application/pdf" width="100%"
+                                        height="600px">                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <?php endif; ?>
+                            <p><strong>Willing to Relocate:</strong>
+                                <?php
+                                $options = [
+                                    1 => 'Yes',
+                                    2 => 'No',
+                                ];
+                                
+                                echo isset($options[(int) $worker['willing']]) ? htmlspecialchars($options[(int) $worker['willing']]) : 'Unknown';
+                                ?>
+                            </p>
+                            <p><strong>In a Recruitment Process:</strong>
+                                <?php
+                                $options = [
+                                    1 => 'Yes',
+                                    2 => 'No',
+                                ];
+                                
+                                echo isset($options[(int) $worker['recruitment']]) ? htmlspecialchars($options[(int) $worker['recruitment']]) : 'Unknown';
+                                ?>
+                            </p>
+
                         </div>
                     </div>
+
                 </div>
             </div>
-            <!-- Educational Background -->
-            <div class="col-md-6">
-                <div class="card mt-4" style="height: 400px;">
-                    <div class="card-body">
-                        <h4 class="card-title">Educational Background</h4>
-                        <hr>
-                        <p><strong>Current Education Level:</strong> <?php echo htmlspecialchars($worker['current_education_level_name']); ?></p>
-                        <p><strong>Current Major:</strong> <?php echo htmlspecialchars($worker['current_major']); ?></p>
-                        <p><strong>Current School:</strong> <?php echo htmlspecialchars($worker['current_school']); ?></p>
-                        <p><strong>Last Education Level:</strong> <?php echo htmlspecialchars($worker['last_education_level_name']); ?></p>
-                        <p><strong>Last Major:</strong> <?php echo htmlspecialchars($worker['last_major']); ?></p>
-                        <p><strong>Last School:</strong> <?php echo htmlspecialchars($worker['last_school']); ?></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <!-- Work Experience -->
-            <div class="col-md-6">
-                <div class="card mt-4" style="height: 400px;">
-                    <div class="card-body">
-                        <h4 class="card-title">Work Experience</h4>
-                        <hr>
-                        <p><strong>Last Position:</strong> <?php echo htmlspecialchars($worker['last_position']); ?></p>
-                        <p><strong>Last Company:</strong> <?php echo htmlspecialchars($worker['last_company']); ?></p>
-                        <p><strong>Last Job Description:</strong> <?php echo htmlspecialchars($worker['last_job_desc']); ?></p>
-                        <p><strong>Skill Level:</strong> <?php echo $worker['skill_level']; ?></p>
-                        <p><strong>Internet:</strong> <?php echo $worker['internet']; ?></p>
-                    </div>
-                </div>
-            </div>
-            <!-- Documents and Portfolio -->
-            <div class="col-md-6">
-                <div class="card mt-4" style="height: 400px;">
-                    <div class="card-body">
-                        <h4 class="card-title">Documents and Portfolio</h4>
-                        <hr>
-
-                        <?php if (empty($worker['introduction']) && empty($worker['cv']) && empty($worker['portfolio'])): ?>
-                        <p>Document & portofolio not available</p>
-                        <?php endif; ?>
-
-                        <!-- Introduction -->
-                        <?php if (!empty($worker['introduction'])): ?>
-                        <p><strong>Introduction:</strong> <a href="#" data-bs-toggle="modal"
-                                data-bs-target="#introductionModal">Watch Video (Audio Only)</a> - <small><em>For
-                                    audio,
-                                    download the video.</em></small></p>
-                        <?php endif; ?>
-
-                        <!-- Introduction Modal -->
-                        <?php if (!empty($worker['introduction'])): ?>
-                        <div class="modal fade" id="introductionModal" tabindex="-1"
-                            aria-labelledby="introductionModalLabel" aria-hidden="true">
-                            <!-- Konten modal -->
-                        </div>
-                        <?php endif; ?>
-
-                        <!-- Button trigger modal -->
-                        <?php if (!empty($worker['cv'])): ?>
-                        <p><strong>CV:</strong> <a href="#" data-bs-toggle="modal"
-                                data-bs-target="#cvPreviewModal">Preview</a></p>
-                        <?php endif; ?>
-
-                        <!-- CV Preview Modal -->
-                        <?php if (!empty($worker['cv'])): ?>
-                        <div class="modal fade" id="cvPreviewModal" tabindex="-1"
-                            aria-labelledby="cvPreviewModalLabel" aria-hidden="true">
-                            <!-- Konten modal -->
-                        </div>
-                        <?php endif; ?>
-
-                        <!-- Portfolio -->
-                        <?php if (!empty($worker['portfolio'])): ?>
-                        <p><strong>Portfolio:</strong> <a href="#" data-bs-toggle="modal"
-                                data-bs-target="#portfolioPreviewModal">Preview</a></p>
-                        <?php endif; ?>
-
-                        <!-- Portfolio Preview Modal -->
-                        <?php if (!empty($worker['portfolio'])): ?>
-                        <div class="modal fade" id="portfolioPreviewModal" tabindex="-1"
-                            aria-labelledby="portfolioPreviewModalLabel" aria-hidden="true">
-                            <!-- Konten modal -->
-                        </div>
-                        <?php endif; ?>
-
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-    </div>
 
-
-    <!-- Tombol Kembali -->
     <a href="index.php" class="btn btn-secondary mt-4">Back to List</a>
     </div>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if (sessionStorage.getItem('resetForm') === 'true') {
-            document.getElementById("interviewAssessmentForm").reset(); // Reset formulir
-            sessionStorage.removeItem('resetForm'); // Hapus data sesi
-        }
-    });
-</script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (sessionStorage.getItem('resetForm') === 'true') {
+                document.getElementById("interviewAssessmentForm").reset(); // Reset formulir
+                sessionStorage.removeItem('resetForm'); // Hapus data sesi
+            }
+        });
+    </script>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

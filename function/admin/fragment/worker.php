@@ -12,6 +12,13 @@ if (!is_admin_logged_in()) {
     header('Location: ../login.php');
     exit();
 }
+
+if (!can_access()) {
+    // Redirect to an access denied page or home
+    header('Location: ./access_denied.php');
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -145,7 +152,7 @@ if (!is_admin_logged_in()) {
                                 ?>
                             </select>
                         </div>
-                        <div class="form-group mb-0">
+                        <div class="form-group mb-0 me-2">
                             <select id="statusFilter" class="form-select">
                                 <option value="">All Status Worker</option>
                                 <?php
@@ -155,6 +162,18 @@ if (!is_admin_logged_in()) {
                                 }
                                 ?>
                             </select>
+                        </div>
+                        <!-- Dropdown for Export Options -->
+                        <div class="btn-group mb-0">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Export
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" id="exportExcel">Export to Excel/CSV</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#" id="exportPdf">Export to PDF</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -202,6 +221,18 @@ if (!is_admin_logged_in()) {
                 </table>
             </div>
         </div>
+
+
+        <script>
+            document.getElementById('exportExcel').addEventListener('click', function() {
+                window.location.href = 'export.php?type=excel'; // Adjust this URL to your export logic
+            });
+
+            document.getElementById('exportPdf').addEventListener('click', function() {
+                window.location.href = 'export.php?type=pdf'; // Adjust this URL to your export logic
+            });
+        </script>
+
 
 
         <!-- JavaScript Libraries -->

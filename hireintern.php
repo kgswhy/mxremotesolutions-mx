@@ -9,7 +9,27 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
     <title>MX Remote Solutions</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
-    <meta content="" name="description">
+<!-- Meta tags for SEO -->
+<meta name="description"
+        content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
+    <meta name="keywords"
+        content="remote work, remote jobs, global talent, talent acquisition, Indonesia, international, remote teams, hiring, job opportunities">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="MX Remote Solutions: Your Bridge to Global Remote Talent">
+    <meta property="og:description"
+        content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mxremotesolutions.com/">
+    <meta property="og:image" content="https://mxremotesolutions.com/registerworker.php">
+
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MX Remote Solutions: Your Bridge to Global Remote Talent">
+    <meta name="twitter:description"
+        content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
+    <meta name="twitter:image" content="https://mxremotesolutions.com/contact.html">
 
     <!-- Favicon -->
     <link href="img/favicon.png" rel="icon">
@@ -67,7 +87,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- Navbar Start -->
   <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"><img src="img/logo.png" width="200px" /></h2>
+            <h2 class="m-0 text-primary"><img src="img/logo.webp" width="200px" /></h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>

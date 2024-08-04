@@ -2,6 +2,7 @@
 require 'db_connection.php';
 require 'utilities.php';
 // Fungsi untuk validasi dan sanitasi input
+
 function register_worker($data, $files)
 {
     global $pdo; // Akses koneksi database PDO yang telah disiapkan sebelumnya
@@ -36,7 +37,7 @@ function register_worker($data, $files)
         $other_position = isset($data['other_position']) ? validate_input($data['other_position']) : null;
         $last_job_desc = isset($data['last_job_desc']) ? validate_input($data['last_job_desc']) : null;
 
-        // Validasi dan sanitasi input untuk documents and portfolio
+        // Validasi dan sanitasi input untuk documents and portofolio
         $skill_level = isset($data['skill_level']) ? (int) $data['skill_level'] : null;
         $internet = isset($data['internet']) ? (int) $data['internet'] : null;
         $willing = isset($data['willing']) ? (int) $data['willing'] : null;
@@ -77,8 +78,8 @@ function register_worker($data, $files)
         // Upload CV file and get its path
         $cv_path = upload_file($files['cv'] ?? null, './cvWorker/', 10);
 
-        // Upload portfolio file and get its path
-        $portofolio_path = upload_file($files['portfolio'] ?? null, './portfolio/', 10);
+        // Upload portofolio file and get its path
+        $portofolio_path = upload_file($files['portofolio'] ?? null, './portofolio/', 10);
 
         // Handle cases where the upload might have failed or was not provided
         if (is_string($introduction_path) && strpos($introduction_path, 'File size exceeds') === 0) {
@@ -96,13 +97,13 @@ function register_worker($data, $files)
         }
 
         if (is_string($portofolio_path) && strpos($portofolio_path, 'File size exceeds') === 0) {
-            // Handle file size error for portfolio
+            // Handle file size error for portofolio
             // You might want to return or handle this error
             echo json_encode(['success' => false, 'error' => $portofolio_path]);
             exit();
         }
 
-        // Use $introduction_path, $cv_path, and $portfolio_path as needed
+        // Use $introduction_path, $cv_path, and $portofolio_path as needed
         // If files were not uploaded, their paths will be empty strings
 
         // Simpan data ke dalam tabel worker
@@ -121,7 +122,7 @@ function register_worker($data, $files)
     :english_proficiency, :toefl_score, :last_position, :last_company,
     :last_job_desc, :desired_position_id, :position_remark, :skill_level, :internet,
     :willing, :recruitment, :introduction, :cv, :portofolio, :referral,
-    '1'  
+    '1'
 )";
 
         $stmt = $pdo->prepare($sql);
@@ -169,21 +170,21 @@ function get_workers()
 {
     global $pdo;
 
-    $sql = "SELECT w.*, 
-                g.name AS gender_name, 
-                ms.name AS marital_status_name, 
-                r.name AS religion_name, 
-                ce.name AS current_education_level_name, 
-                le.name AS last_education_level_name, 
-                p.name AS position_table_name, 
+    $sql = "SELECT w.*,
+                g.name AS gender_name,
+                ms.name AS marital_status_name,
+                r.name AS religion_name,
+                ce.name AS current_education_level_name,
+                le.name AS last_education_level_name,
+                p.name AS position_table_name,
                 sw.name AS status_worker_name
-            FROM worker w 
-            LEFT JOIN gender g ON w.gender_id = g.id 
-            LEFT JOIN marital_status ms ON w.marital_status_id = ms.id 
-            LEFT JOIN religion r ON w.religion_id = r.id 
-            LEFT JOIN education_level ce ON w.current_education_level_id = ce.id 
-            LEFT JOIN education_level le ON w.last_education_level_id = le.id 
-            LEFT JOIN position_table p ON w.desired_position_id = p.id 
+            FROM worker w
+            LEFT JOIN gender g ON w.gender_id = g.id
+            LEFT JOIN marital_status ms ON w.marital_status_id = ms.id
+            LEFT JOIN religion r ON w.religion_id = r.id
+            LEFT JOIN education_level ce ON w.current_education_level_id = ce.id
+            LEFT JOIN education_level le ON w.last_education_level_id = le.id
+            LEFT JOIN position_table p ON w.desired_position_id = p.id
             LEFT JOIN status_worker sw ON w.status_worker_id = sw.id";
 
     $stmt = $pdo->prepare($sql);
@@ -205,22 +206,22 @@ function get_worker_by_id($id)
     $worker_id = (int) $id;
 
     // Query untuk mendapatkan informasi pekerja dengan ID tertentu
-    $stmt = $pdo->prepare("SELECT w.*, 
-                                  g.name AS gender_name, 
-                                  ms.name AS marital_status_name, 
-                                  r.name AS religion_name, 
-                                  ce.name AS current_education_level_name, 
-                                  le.name AS last_education_level_name, 
-                                  p.name AS position_table_name, 
+    $stmt = $pdo->prepare("SELECT w.*,
+                                  g.name AS gender_name,
+                                  ms.name AS marital_status_name,
+                                  r.name AS religion_name,
+                                  ce.name AS current_education_level_name,
+                                  le.name AS last_education_level_name,
+                                  p.name AS position_table_name,
                                   sw.name AS status_worker_name
-                            FROM worker w 
-                            LEFT JOIN gender g ON w.gender_id = g.id 
-                            LEFT JOIN marital_status ms ON w.marital_status_id = ms.id 
-                            LEFT JOIN religion r ON w.religion_id = r.id 
-                            LEFT JOIN education_level ce ON w.current_education_level_id = ce.id 
-                            LEFT JOIN education_level le ON w.last_education_level_id = le.id 
-                            LEFT JOIN position_table p ON w.desired_position_id = p.id 
-                            LEFT JOIN status_worker sw ON w.status_worker_id = sw.id 
+                            FROM worker w
+                            LEFT JOIN gender g ON w.gender_id = g.id
+                            LEFT JOIN marital_status ms ON w.marital_status_id = ms.id
+                            LEFT JOIN religion r ON w.religion_id = r.id
+                            LEFT JOIN education_level ce ON w.current_education_level_id = ce.id
+                            LEFT JOIN education_level le ON w.last_education_level_id = le.id
+                            LEFT JOIN position_table p ON w.desired_position_id = p.id
+                            LEFT JOIN status_worker sw ON w.status_worker_id = sw.id
                             WHERE w.id = :id");
 
     // Mengikat parameter untuk mencegah SQL injection
@@ -400,6 +401,212 @@ function get_worker_interview_by_id($interview_id)
         // Tangani kesalahan database jika terjadi
         echo 'Error: ' . $e->getMessage();
         return null; // Kembalikan null jika terjadi kesalahan
+    }
+}
+
+function encrypt($data, $key)
+{
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+    $encrypted = openssl_encrypt($data, 'aes-256-cbc', $key, 0, $iv);
+    return base64_encode($encrypted . '::' . $iv);
+}
+
+function decrypt($data, $key)
+{
+    [$encrypted_data, $iv] = explode('::', base64_decode($data), 2);
+    return openssl_decrypt($encrypted_data, 'aes-256-cbc', $key, 0, $iv);
+}
+
+function update_worker($data, $files)
+{
+    global $pdo; // Akses koneksi database PDO yang telah disiapkan sebelumnya
+
+    try {
+        // Ambil ID pekerja dari data
+        $worker_id = isset($data['worker_id']) ? (int) $data['worker_id'] : null;
+
+        if (!$worker_id) {
+            throw new Exception('Worker ID is required for update.');
+        }
+
+        // Validasi dan sanitasi input untuk personal information
+        $fullname = isset($data['fullname']) ? validate_input($data['fullname']) : null;
+        $shortname = isset($data['shortname']) ? validate_input($data['shortname']) : null;
+        $gender_id = isset($data['gender_id']) ? (int) $data['gender_id'] : null;
+        $phone = isset($data['phone']) ? validate_input($data['phone']) : null;
+        $email = isset($data['email']) ? (validate_email($data['email']) ? $data['email'] : null) : null;
+        $address = isset($data['address']) ? validate_input($data['address']) : null;
+        $birthplace = isset($data['birthplace']) ? validate_input($data['birthplace']) : null;
+        $birthday = isset($data['birthday']) ? $data['birthday'] : null;
+        $religion_id = isset($data['religion_id']) ? (int) $data['religion_id'] : null;
+        $marital_status_id = isset($data['marital_status_id']) ? (int) $data['marital_status_id'] : null;
+
+        // Validasi dan sanitasi input untuk educational background
+        $current_education_level_id = isset($data['current_education_level_id']) ? (int) $data['current_education_level_id'] : null;
+        $current_major = isset($data['current_major']) ? validate_input($data['current_major']) : null;
+        $current_school = isset($data['current_school']) ? validate_input($data['current_school']) : null;
+        $last_education_level_id = isset($data['last_education_level_id']) ? (int) $data['last_education_level_id'] : null;
+        $last_major = isset($data['last_major']) ? validate_input($data['last_major']) : null;
+        $last_school = isset($data['last_school']) ? validate_input($data['last_school']) : null;
+        $english_proficiency = isset($data['english_proficiency']) ? (int) $data['english_proficiency'] : null;
+        $toefl_score = isset($data['toefl_score']) ? (int) $data['toefl_score'] : null;
+
+        // Validasi dan sanitasi input untuk work experience
+        $last_position = isset($data['last_position']) ? validate_input($data['last_position']) : null;
+        $last_company = isset($data['last_company']) ? validate_input($data['last_company']) : null;
+        $desired_position_id = isset($data['desired_position_id']) ? (int) $data['desired_position_id'] : null;
+        $other_position = isset($data['other_position']) ? validate_input($data['other_position']) : null;
+        $last_job_desc = isset($data['last_job_desc']) ? validate_input($data['last_job_desc']) : null;
+
+        // Validasi dan sanitasi input untuk documents and portofolio
+        $skill_level = isset($data['skill_level']) ? (int) $data['skill_level'] : null;
+        $internet = isset($data['internet']) ? (int) $data['internet'] : null;
+        $willing = isset($data['willing']) ? (int) $data['willing'] : null;
+        $recruitment = isset($data['recruitment']) ? (int) $data['recruitment'] : null;
+        $referral = isset($data['referral']) ? validate_input($data['referral']) : null;
+
+        function upload_update_file($file, $directory, $max_file_size_mb, $existing_path = null)
+        {
+            $file_path = $existing_path;
+
+            // Check if file size exceeds the limit
+            if ($file['size'] > $max_file_size_mb * 1024 * 1024) {
+                return "File size exceeds the limit of {$max_file_size_mb} MB.";
+            }
+
+            // Ensure directory exists and is writable
+            if (!is_dir($directory)) {
+                mkdir($directory, 0777, true);
+            }
+
+            $target_file = $directory . basename($file['name']);
+
+            if (move_uploaded_file($file['tmp_name'], $target_file)) {
+                $file_path = str_replace('./', './', $target_file);
+            } else {
+                return 'Failed to move uploaded file.';
+            }
+
+            return $file_path;
+        }
+
+        $max_intro_size_mb = 200;
+        $max_cv_size_mb = 200;
+        $max_portfolio_size_mb = 200;
+
+        $introduction_dir = './introduction/';
+        $cv_dir = './cvWorker/';
+        $portfolio_dir = './portofolio/';
+
+        // Initialize variables for file paths, default to null if not provided
+        $introduction_path = $worker['introduction'] ?? null;
+        $cv_path = $worker['cv'] ?? null;
+        $portofolio_path = $worker['portofolio'] ?? null;
+
+        // Process introduction file
+        if (!empty($_FILES['introduction']['name'])) {
+            $introduction_path = upload_update_file($_FILES['introduction'], $introduction_dir, $max_intro_size_mb, $worker['introduction'] ?? null);
+        }
+        // Process CV file
+        if (!empty($_FILES['cv']['name'])) {
+            $cv_path = upload_update_file($_FILES['cv'], $cv_dir, $max_cv_size_mb, $worker['cv'] ?? null);
+        }
+
+        // Process portfolio file
+        if (!empty($_FILES['portofolio']['name'])) {
+            $portofolio_path = upload_update_file($_FILES['portofolio'], $portfolio_dir, $max_portfolio_size_mb, $worker['portofolio'] ?? null);
+        }
+
+        // Handle cases where the upload might have failed due to size
+        if (is_string($introduction_path) && strpos($introduction_path, 'File size exceeds') === 0) {
+            echo json_encode(['success' => false, 'error' => $introduction_path]);
+            exit();
+        }
+
+        if (is_string($cv_path) && strpos($cv_path, 'File size exceeds') === 0) {
+            echo json_encode(['success' => false, 'error' => $cv_path]);
+            exit();
+        }
+
+        if (is_string($portofolio_path) && strpos($portofolio_path, 'File size exceeds') === 0) {
+            echo json_encode(['success' => false, 'error' => $portofolio_path]);
+            exit();
+        }
+
+        // Update data ke dalam tabel worker
+        $sql = "UPDATE worker SET
+            fullname = :fullname,
+            shortname = :shortname,
+            gender_id = :gender_id,
+            phone = :phone,
+            email = :email,
+            address = :address,
+            birthplace = :birthplace,
+            birthday = :birthday,
+            religion_id = :religion_id,
+            marital_status_id = :marital_status_id,
+            current_education_level_id = :current_education_level_id,
+            current_major = :current_major,
+            current_school = :current_school,
+            last_education_level_id = :last_education_level_id,
+            last_major = :last_major,
+            last_school = :last_school,
+            english_proficiency = :english_proficiency,
+            toefl_score = :toefl_score,
+            last_position = :last_position,
+            last_company = :last_company,
+            last_job_desc = :last_job_desc,
+            desired_position_id = :desired_position_id,
+            position_remark = :position_remark,
+            skill_level = :skill_level,
+            internet = :internet,
+            willing = :willing,
+            recruitment = :recruitment,
+            introduction = :introduction,
+            cv = :cv,
+            portofolio = :portofolio,
+            referral = :referral
+            WHERE id = :worker_id";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':fullname' => $fullname,
+            ':shortname' => $shortname,
+            ':gender_id' => $gender_id,
+            ':phone' => $phone,
+            ':email' => $email,
+            ':address' => $address,
+            ':birthplace' => $birthplace,
+            ':birthday' => $birthday,
+            ':religion_id' => $religion_id,
+            ':marital_status_id' => $marital_status_id,
+            ':current_education_level_id' => $current_education_level_id,
+            ':current_major' => $current_major,
+            ':current_school' => $current_school,
+            ':last_education_level_id' => $last_education_level_id,
+            ':last_major' => $last_major,
+            ':last_school' => $last_school,
+            ':english_proficiency' => $english_proficiency,
+            ':toefl_score' => $toefl_score,
+            ':last_position' => $last_position,
+            ':last_company' => $last_company,
+            ':last_job_desc' => $last_job_desc,
+            ':desired_position_id' => $desired_position_id,
+            ':position_remark' => $other_position,
+            ':skill_level' => $skill_level,
+            ':internet' => $internet,
+            ':willing' => $willing,
+            ':recruitment' => $recruitment,
+            ':introduction' => $introduction_path,
+            ':cv' => $cv_path,
+            ':portofolio' => $portofolio_path,
+            ':referral' => $referral,
+            ':worker_id' => $worker_id,
+        ]);
+
+        return ['success' => true, 'error' => ''];
+    } catch (Exception $e) {
+        return ['success' => false, 'error' => $e->getMessage()];
     }
 }
 

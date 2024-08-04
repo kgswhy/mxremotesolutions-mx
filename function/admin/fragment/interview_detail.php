@@ -13,6 +13,13 @@ if (!is_admin_logged_in()) {
     exit();
 }
 
+if (!can_access()) {
+    // Redirect to an access denied page or home
+    header('Location: ./access_denied.php');
+    exit();
+}
+
+
 $interview_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
 $interview = get_worker_interview_by_id($interview_id);
 

@@ -56,7 +56,7 @@ require './function/getData.php';
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <!-- Schema Markup for Organization -->
-  
+
     <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -252,10 +252,13 @@ require './function/getData.php';
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5">
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="col-lg-6 wow fadeInUp video-container" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="img-fluid position-absolute w-100 h-100" src="img/about.webp"
-                            alt="About Image Section" style="object-fit: cover;">
+                        <video class="img-fluid position-absolute w-100 h-100" style="object-fit: cover;" muted loop
+                            controls>
+                            <source src="./img/MX Remote Solutions.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -297,6 +300,9 @@ require './function/getData.php';
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- About End -->
 
 
@@ -596,8 +602,6 @@ require './function/getData.php';
                     <a class="btn btn-link" href="about.html">About Us</a>
                     <a class="btn btn-link" href="contact.html">Contact Us</a>
                     <a class="btn btn-link" href="services.php">Our Services</a>
-                    <a class="btn btn-link" href="terms.html">Terms & Condition</a>
-                    <a class="btn btn-link" href="privacy.html">Privacy Policy</a>
                 </div>
             </div>
         </div>

@@ -9,7 +9,27 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
     <title>MX Remote Solutions</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
-    <meta content="" name="description">
+<!-- Meta tags for SEO -->
+<meta name="description"
+        content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
+    <meta name="keywords"
+        content="remote work, remote jobs, global talent, talent acquisition, Indonesia, international, remote teams, hiring, job opportunities">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="MX Remote Solutions: Your Bridge to Global Remote Talent">
+    <meta property="og:description"
+        content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mxremotesolutions.com/">
+    <meta property="og:image" content="https://mxremotesolutions.com/registerworker.php">
+
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MX Remote Solutions: Your Bridge to Global Remote Talent">
+    <meta name="twitter:description"
+        content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
+    <meta name="twitter:image" content="https://mxremotesolutions.com/contact.html">
 
     <!-- Favicon -->
     <link href="img/favicon.png" rel="icon">
@@ -50,14 +70,14 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"><img src="img/logo.png" width="200px" /></h2>
+            <h2 class="m-0 text-primary"><img src="img/logo.webp" width="200px" /></h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.php" class="nav-item nav-link ">Home</a>
+                <a href="index.php" class="nav-item nav-link">Home</a>
                 <a href="about.html" class="nav-item nav-link ">About Us</a>
                 <a href="services.php" class="nav-item nav-link">Services</a>
                 <a href="job.php" class="nav-item nav-link">Job Opportunities</a>
@@ -302,18 +322,17 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-4 col-md-4">
                     <h4 class="text-white mb-3">About Us</h4>
                     <div class="row g-2 pt-2">
-                        <p>Work from Anywhere is a program by MX Solution. We connects highly skilled professionals with
-                            businesses seeking remote talent solutions.</p>
+                        <p>We connects highly skilled professionals with businesses seeking remote talent solutions.</p>
                         <p>We bridge talent across borders by providing exceptional remote work opportunities. We
                             understand the unique cultural and professional synergies between Indonesia and other
                             countries and leverage this knowledge to foster smooth, productive working relationships.
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-4 col-md-4">
                     <h4 class="text-white mb-3">Contact</h4>
                     <p><b>MX Global Pte Ltd</b><br>
                         Midview City, 22 Sin Ming Lane, #06-76, Postal 573969
@@ -324,17 +343,12 @@ require './function/getData.php'; // Mendapatkan data untuk dropdown
                         hello@mxremotesolutions.com
                     </p>
                 </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        © 2024 MX Global Pte Ltd | PT Max Pandai Education
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
+                <div class="col-lg-4 col-md-4">
 
-                    </div>
+                    <h4 class="text-light mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="about.html">About Us</a>
+                    <a class="btn btn-link" href="contact.html">Contact Us</a>
+                    <a class="btn btn-link" href="services.php">Our Services</a>
                 </div>
             </div>
         </div>

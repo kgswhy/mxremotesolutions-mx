@@ -11,7 +11,27 @@ require './function/getData.php';
     <title>MX Remote Solutions</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
-    <meta content="" name="description">
+<!-- Meta tags for SEO -->
+<meta name="description"
+        content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
+    <meta name="keywords"
+        content="remote work, remote jobs, global talent, talent acquisition, Indonesia, international, remote teams, hiring, job opportunities">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="MX Remote Solutions: Your Bridge to Global Remote Talent">
+    <meta property="og:description"
+        content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mxremotesolutions.com/">
+    <meta property="og:image" content="https://mxremotesolutions.com/registerworker.php">
+
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MX Remote Solutions: Your Bridge to Global Remote Talent">
+    <meta name="twitter:description"
+        content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
+    <meta name="twitter:image" content="https://mxremotesolutions.com/contact.html">
 
     <link href="img/favicon.png" rel="icon">
 

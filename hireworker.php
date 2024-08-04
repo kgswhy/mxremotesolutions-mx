@@ -10,55 +10,75 @@ require './function/getData.php';
     <title>MX Remote Solutions</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
-    <meta content="" name="description">
+    <!-- Meta tags for SEO -->
+        <meta name="description"
+            content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
+        <meta name="keywords"
+            content="remote work, remote jobs, global talent, talent acquisition, Indonesia, international, remote teams, hiring, job opportunities">
+        <meta name="robots" content="index, follow">
 
-    <!-- Favicon -->
-    <link href="img/favicon.png" rel="icon">
+        <!-- Open Graph meta tags -->
+        <meta property="og:title" content="MX Remote Solutions: Your Bridge to Global Remote Talent">
+        <meta property="og:description"
+            content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://mxremotesolutions.com/">
+        <meta property="og:image" content="https://mxremotesolutions.com/registerworker.php">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
-        rel="stylesheet">
+        <!-- Twitter Card meta tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="MX Remote Solutions: Your Bridge to Global Remote Talent">
+        <meta name="twitter:description"
+            content="MX Remote Solutions connects top-tier talent with businesses seeking remote work solutions. Explore our platform for global job opportunities and seamless talent acquisition.">
+        <meta name="twitter:image" content="https://mxremotesolutions.com/contact.html">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+        <!-- Favicon -->
+        <link href="img/favicon.png" rel="icon">
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
+            rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap JS dan dependensi -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap JS dan dependensi -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
 
-    <style>
-        .testimonial-item {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-        }
+        <style>
+            .testimonial-item {
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+                padding: 30px;
+            }
 
-        .testimonial-item .fa-quote-left {
-            color: #007bff;
-        }
+            .testimonial-item .fa-quote-left {
+                color: #007bff;
+            }
 
-        .testimonial-item img {
-            width: 80px;
-            height: 80px;
-        }
-    </style>
+            .testimonial-item img {
+                width: 80px;
+                height: 80px;
+            }
+        </style>
 
 </head>
 
@@ -136,56 +156,6 @@ require './function/getData.php';
                             <a href="#internCard" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
                                 <i class="fas fa-search"></i> Get Started Now
                             </a>
-                        </div>
-
-                        <!-- Pastikan tidak ada tumpang tindih -->
-                        <div class="col-lg-6 col-md-12 d-flex justify-content-center justify-content-lg-end">
-                            <!-- Buatlah formulir dengan layout yang benar -->
-                            <div class="animate__animated animate__fadeInRight"
-                                style="background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); width: 80%;">
-                                <h4>Hire Your Intern</h4>
-                                <form action="./function/submit_temporary_data.php" method="post">
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">Name *</label>
-                                        <input type="text" class="form-control" id="name"
-                                            name="temporary_pic_name" placeholder="Enter your name" required>
-                                    </div>
-                                    <!-- Gunakan sistem grid untuk mencegah tumpang tindih -->
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email *</label>
-                                        <input type="email" class="form-control" id="email"
-                                            name="temporary_pic_email" placeholder="Enter your email" required>
-                                    </div>
-                                    <!-- Tambahkan padding dan margin untuk ruang yang cukup -->
-                                    <div class="mb-3">
-                                        <label for="company_name" class="form-label">Company Name *</label>
-                                        <input type="text" class="form-control" id="company_name"
-                                            name="temporary_company_name" placeholder="Enter your company name"
-                                            required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="phone" class="form-label">Phone Number (+code) *</label>
-                                        <input type="tel" class="form-control" id="phone"
-                                            name="temporary_phone" pattern="[+0-9]+"
-                                            placeholder="Enter your phone number" required>
-                                    </div>
-                                    <!-- Pastikan tidak ada tumpang tindih antar field -->
-                                    <div class="mb-3">
-                                        <label for="looking-for" class="form-label">Looking for *</label>
-                                        <select class="form-control" id="looking-for" name="temporary_positions"
-                                            required>
-                                            <option value="">Select an option</option>
-                                            <?php foreach ($positions as $job): ?>
-                                            <option value="<?= $job['id'] ?>"><?= $job['name'] ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <!-- Tombol Submit -->
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-paper-plane"></i> Register
-                                    </button>
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -357,7 +327,7 @@ require './function/getData.php';
     <!-- How It Works End -->
 
     <!-- Testimonials Start -->
-    <div class="container-xxl py-5">
+    <!-- <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mb-5">
                 <h2>What Our Clients Say</h2>
@@ -400,20 +370,68 @@ require './function/getData.php';
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Testimonials End -->
 
 
 
     <!-- Call to Action Section -->
-    <div class="container-xxl py-5 bg-light">
-        <div class="container text-center">
+    <div class="container-xxl py-5 bg-light" id="internCard">
+        <div class="container text-center mb-5">
             <h2 class="section-title mb-3">Ready to Transform Your Business?</h2>
             <p class="section-subtitle mb-4">Contact us today and discover the benefits of hiring remote professionals.
             </p>
-            <a href="contact.html" class="btn btn-primary btn-lg">Get in Touch</a>
+        </div>
+            <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="animate__animated animate__fadeInRight"
+                        style="background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);">
+                        <h4 class="text-center mb-4">Hire Your Intern</h4>
+                        <form action="./function/submit_temporary_data.php" method="post">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name: <Span style="color: red;">*</Span> </label>
+                                <input type="text" class="form-control" id="name" name="temporary_pic_name"
+                                    placeholder="Enter your name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email <Span style="color: red;">*</Span></label>
+                                <input type="email" class="form-control" id="email" name="temporary_pic_email"
+                                    placeholder="Enter your email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="company_name" class="form-label">Company Name: <Span style="color: red;">*</Span> </label>
+                                <input type="text" class="form-control" id="company_name"
+                                    name="temporary_company_name" placeholder="Enter your company name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number (+code) <Span style="color: red;">*</Span></label>
+                                <input type="tel" class="form-control" id="phone" name="temporary_phone"
+                                    pattern="[+0-9]+" placeholder="Enter your phone number" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="looking-for" class="form-label">Looking for <Span style="color: red;">*</Span></label>
+                                <select class="form-control" id="looking-for" name="temporary_positions" required>
+                                    <option value="">Select an option</option>
+                                    <?php
+                                    foreach ($positions as $position) {
+                                        if ($position['status']) {
+                                            echo "<option value=\"{$position['id']}\">{$position['name']}</option>";
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-paper-plane"></i> Register
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
     <!-- End Call to Action Section -->
 
 
